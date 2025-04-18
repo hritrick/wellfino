@@ -1,0 +1,137 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    width: 150px;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 30px;
+    padding-right: 50px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #87ceeb;
+}
+
+section {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+#about {
+    text-align: left;
+}
+
+.product-list {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.product {
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #87ceeb;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product:hover {
+    background-color: #87ceeb;
+    color: white;
+}
+
+form input,
+form textarea,
+form button {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    padding: 10px;
+}
+
+footer {
+    background-color: #87ceeb;
+    padding: 10px;
+    text-align: center;
+    margin-top: auto;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .logo {
+        width: 100px;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        background: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        border-radius: 5px;
+        align-items: center;
+        text-align: center;
+    }
+
+    nav ul.active {
+        display: flex;
+    }
+
+    .product-list {
+        flex-direction: column;
+        align-items: center;
+    }
+}
