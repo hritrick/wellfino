@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="theme-color" content="#007bff">
+    <title>Wellfino Pharmaceutical</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <img src="./img/Wellfino Logo.png" alt="Wellfino Pharmaceutical Logo">
+            <button class="mobile-menu-btn">
+                <i class="ri-menu-line"></i>
+            </button>
+            <div class="navbar">
+                <a href="#">PRODUCTS</a>
+                <a href="#">ABOUT US</a>
+                <a href="#">CONTACT</a>
+                <a href="#" class="icon-link"><i class="ri-shopping-cart-line"></i></a>
+                <a href="#" class="icon-link"><i class="ri-user-line"></i></a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Advancing Healthcare Through Innovation</h1>
+                <p>At Wellfino Pharmaceutical, we're dedicated to developing breakthrough medicines and improving lives through cutting-edge research and development.</p>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Research & Development</h3>
+                    <p>Our state-of-the-art research facilities and dedicated team of scientists work tirelessly to develop innovative pharmaceutical solutions for complex medical challenges.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Quality Assurance</h3>
+                    <p>We maintain the highest standards of quality and safety in all our products, following strict regulatory guidelines and international pharmaceutical standards.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Patient Care</h3>
+                    <p>Our patient-centric approach ensures that we develop medications that not only treat conditions effectively but also improve the overall quality of life.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="map-section">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d942.0251332466088!2d73.1307342!3d19.2106119!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be795c34caa3c3d%3A0x4c7c2c5f3b4bc3e2!2s746R%2BVX%20Kalyan%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1710997408090!5m2!1sen!2sin" 
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Wellfino Pharmaceutical Location"></iframe>
+            </div>
+            <div class="contact-section">
+                <h3 class="contact-title">Address</h3>
+                <div class="contact-item address">
+                    <i class="ri-map-pin-line"></i>
+                    <span class="address-container">
+                        <span class="addr-line">Wellfino Pharmaceutical Pvt. Ltd.</span>
+                        <span class="addr-line">Office No. 3/4, Jadhav Gadh Building</span>
+                        <span class="addr-line">Near Shani Mandir, Godrej Hill</span>
+                        <span class="addr-line">Kalyan (W) - 421301</span>
+                    </span>
+                </div>
+            </div>
+            <div class="contact-section">
+                <h3 class="contact-title">Contact</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="ri-mail-line"></i>
+                        <a href="mailto:sales@wellfinopharmaceutical.in">sales@wellfinopharmaceutical.in</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="ri-phone-line"></i>
+                        <a href="tel:+918082518822">+91 8082518822</a> / <a href="tel:+919833754729">+91 9833754729</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2021-2025 Wellfino Pharmaceutical Pvt. Ltd.</p>
+        </div>
+    </footer>
+    <script>
+        // Scroll effect for navbar
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navbar = document.querySelector('.navbar');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navbar.classList.toggle('active');
+            const isOpen = navbar.classList.contains('active');
+            mobileMenuBtn.innerHTML = isOpen ? '<i class="ri-close-line"></i>' : '<i class="ri-menu-line"></i>';
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navbar.contains(e.target) && !mobileMenuBtn.contains(e.target) && navbar.classList.contains('active')) {
+                navbar.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="ri-menu-line"></i>';
+            }
+        });
+    </script>
+</body>
+</html>
