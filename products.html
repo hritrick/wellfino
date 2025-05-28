@@ -17,16 +17,98 @@
             --vh: 1vh;
         }
         
+        .products-grid {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .filter-sort-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .filter-options, .sort-options {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-label, .sort-label {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .filter-btn, .sort-select {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid var(--color-border);
+            background-color: white;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .filter-btn.active {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+        
+        .filter-btn:hover:not(.active) {
+            background-color: #f0f0f0;
+        }
+        
+        .sort-select {
+            padding-right: 30px;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 12px;
+        }
+        
         @media (max-width: 768px) {
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
             }
+            
+            .filter-sort-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .filter-options, .sort-options {
+                width: 100%;
+                overflow-x: auto;
+                padding-bottom: 5px;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .filter-options {
+                order: 2;
+            }
+            
+            .sort-options {
+                order: 1;
+                margin-bottom: 10px;
+            }
         }
         
         @media (max-width: 480px) {
             .products-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .filter-btn, .sort-select {
+                padding: 6px 12px;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -135,167 +217,55 @@
 
     <main>
         <div class="container">
+            <div class="filter-sort-container">
+                <div class="filter-options">
+                    <span class="filter-label">Filter:</span>
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="general">General</button>
+                    <button class="filter-btn" data-filter="gynaecology">Gynaecology</button>
+                    <button class="filter-btn" data-filter="orthopedic">Orthopedic</button>
+                    <button class="filter-btn" data-filter="dermatology">Dermatology</button>
+                    <button class="filter-btn" data-filter="antibiotics">Antibiotics</button>
+                    <button class="filter-btn" data-filter="ppi">PPI</button>
+                </div>
+                <div class="sort-options">
+                    <span class="sort-label">Sort by:</span>
+                    <select class="sort-select" id="sort-products">
+                        <option value="default">Featured</option>
+                        <option value="name-asc">Name (A-Z)</option>
+                        <option value="name-desc">Name (Z-A)</option>
+                        <option value="price-asc">Price (Low to High)</option>
+                        <option value="price-desc">Price (High to Low)</option>
+                    </select>
+                </div>
+            </div>
+            
             <div class="products-grid">
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/paracetamol.jpg" alt="Paracetamol Tablets">
-                        <span class="product-tag">OTC</span>
+                        <img src="assets/img/products/Acepimol-Cold.png" alt="Acepimol-Cold">
+                        <span class="product-tag">General</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Paracetamol Tablets</h3>
-                        <p class="product-description">Pain reliever and fever reducer for mild to moderate pain.</p>
+                        <h3 class="product-name">Acepimol-Cold</h3>
+                        <p class="product-description">Relief from cold, cough, and flu symptoms.</p>
                         <div class="product-meta">
                             <span class="product-dosage">500mg</span>
-                            <span class="product-price">₹25.00</span>
+                            <span class="product-price">₹65.00</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/amoxicillin.jpg" alt="Amoxicillin Capsules">
-                        <span class="product-tag prescription">Rx</span>
+                        <img src="assets/img/products/Acepimol-SP.png" alt="Acepimol-SP">
+                        <span class="product-tag">General</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Amoxicillin Capsules</h3>
-                        <p class="product-description">Broad-spectrum antibiotic for bacterial infections.</p>
+                        <h3 class="product-name">Acepimol-SP</h3>
+                        <p class="product-description">Strong pain reliever with extended release formula.</p>
                         <div class="product-meta">
-                            <span class="product-dosage">250mg</span>
-                            <span class="product-price">₹120.00</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/img/products/omeprazole.jpg" alt="Omeprazole Capsules">
-                        <span class="product-tag">OTC</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Omeprazole Capsules</h3>
-                        <p class="product-description">Reduces stomach acid production for acid reflux relief.</p>
-                        <div class="product-meta">
-                            <span class="product-dosage">20mg</span>
-                            <span class="product-price">₹85.00</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/img/products/metformin.jpg" alt="Metformin Tablets">
-                        <span class="product-tag prescription">Rx</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Metformin Tablets</h3>
-                        <p class="product-description">Oral diabetes medicine to control blood sugar levels.</p>
-                        <div class="product-meta">
-                            <span class="product-dosage">500mg</span>
-                            <span class="product-price">₹95.00</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/img/products/cetirizine.jpg" alt="Cetirizine Tablets">
-                        <span class="product-tag">OTC</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Cetirizine Tablets</h3>
-                        <p class="product-description">Antihistamine for allergy relief and hay fever.</p>
-                        <div class="product-meta">
-                            <span class="product-dosage">10mg</span>
-                            <span class="product-price">₹45.00</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/img/products/aspirin.jpg" alt="Aspirin Tablets">
-                        <span class="product-tag">OTC</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Aspirin Tablets</h3>
-                        <p class="product-description">Pain reliever and anti-inflammatory medication.</p>
-                        <div class="product-meta">
-                            <span class="product-dosage">325mg</span>
-                            <span class="product-price">₹30.00</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/img/products/lisinopril.jpg" alt="Lisinopril Tablets">
-                        <span class="product-tag prescription">Rx</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Lisinopril Tablets</h3>
-                        <p class="product-description">ACE inhibitor for high blood pressure treatment.</p>
-                        <div class="product-meta">
-                            <span class="product-dosage">10mg</span>
-                            <span class="product-price">₹110.00</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/img/products/ibuprofen.jpg" alt="Ibuprofen Tablets">
-                        <span class="product-tag">OTC</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Ibuprofen Tablets</h3>
-                        <p class="product-description">NSAID for pain relief and inflammation reduction.</p>
-                        <div class="product-meta">
-                            <span class="product-dosage">400mg</span>
-                            <span class="product-price">₹40.00</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/img/products/azithromycin.jpg" alt="Azithromycin Tablets">
-                        <span class="product-tag prescription">Rx</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Azithromycin Tablets</h3>
-                        <p class="product-description">Antibiotic for respiratory tract infections.</p>
-                        <div class="product-meta">
-                            <span class="product-dosage">250mg</span>
-                            <span class="product-price">₹150.00</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/img/products/loratadine.jpg" alt="Loratadine Tablets">
-                        <span class="product-tag">OTC</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Loratadine Tablets</h3>
-                        <p class="product-description">Non-drowsy antihistamine for allergy relief.</p>
-                        <div class="product-meta">
-                            <span class="product-dosage">10mg</span>
-                            <span class="product-price">₹55.00</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="assets/img/products/amlodipine.jpg" alt="Amlodipine Tablets">
-                        <span class="product-tag prescription">Rx</span>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">Amlodipine Tablets</h3>
-                        <p class="product-description">Calcium channel blocker for blood pressure control.</p>
-                        <div class="product-meta">
-                            <span class="product-dosage">5mg</span>
+                            <span class="product-dosage">650mg</span>
                             <span class="product-price">₹75.00</span>
                         </div>
                     </div>
@@ -303,15 +273,420 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/vitamin-d3.jpg" alt="Vitamin D3 Capsules">
-                        <span class="product-tag new">NEW</span>
+                        <img src="assets/img/products/Allemont-LC.png" alt="Allemont-LC">
+                        <span class="product-tag">General</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Vitamin D3 Capsules</h3>
-                        <p class="product-description">Supports bone health and immune system function.</p>
+                        <h3 class="product-name">Allemont-LC</h3>
+                        <p class="product-description">Anti-allergic combination for allergic rhinitis and cough.</p>
                         <div class="product-meta">
-                            <span class="product-dosage">1000 IU</span>
+                            <span class="product-dosage">5mg/10mg</span>
+                            <span class="product-price">₹110.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Blissglow-H.png" alt="Blissglow-H">
+                        <span class="product-tag dermatology">Dermatology</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Blissglow-H</h3>
+                        <p class="product-description">Advanced skin cream for hydration and brightening.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">50g</span>
                             <span class="product-price">₹299.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Dozinix.png" alt="Dozinix">
+                        <span class="product-tag">General</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Dozinix</h3>
+                        <p class="product-description">Treatment for insomnia and sleep disorders.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">10mg</span>
+                            <span class="product-price">₹145.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Emvaas.png" alt="Emvaas">
+                        <span class="product-tag">General</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Emvaas</h3>
+                        <p class="product-description">Statin medication for cholesterol management.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">20mg</span>
+                            <span class="product-price">₹185.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Hidranergy.png" alt="Hidranergy">
+                        <span class="product-tag">General</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Hidranergy</h3>
+                        <p class="product-description">Hydration supplement with energy-boosting electrolytes.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">30 sachets</span>
+                            <span class="product-price">₹250.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Jigfol.png" alt="Jigfol">
+                        <span class="product-tag gynaecology">Gynaecology</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Jigfol</h3>
+                        <p class="product-description">Folic acid supplement for pregnancy health.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">5mg</span>
+                            <span class="product-price">₹125.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/K2-Nivcal.png" alt="K2-Nivcal">
+                        <span class="product-tag orthopedic">Orthopedic</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">K2-Nivcal</h3>
+                        <p class="product-description">Vitamin K2 with calcium for bone health.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">100mcg/500mg</span>
+                            <span class="product-price">₹290.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Laxomyn.png" alt="Laxomyn">
+                        <span class="product-tag">Orthopedic</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Laxomyn</h3>
+                        <p class="product-description">Gentle laxative for constipation relief.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">100mg</span>
+                            <span class="product-price">₹85.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Lubexin.png" alt="Lubexin">
+                        <span class="product-tag">Dermatology</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Lubexin</h3>
+                        <p class="product-description">Eye lubricant for dry eye relief.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">10ml</span>
+                            <span class="product-price">₹150.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Lusazic.png" alt="Lusazic">
+                        <span class="product-tag orthopedic">Orthopedic</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Lusazic</h3>
+                        <p class="product-description">Shampoo for hair fall and dandruff.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">100ml</span>
+                            <span class="product-price">₹175.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/mivinta-pro-choc.png" alt="Mivinta Pro (Chocolate)">
+                        <span class="product-tag">General</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Mivinta Pro (Chocolate)</h3>
+                        <p class="product-description">Nutritional supplement with chocolate flavor.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">400g</span>
+                            <span class="product-price">₹450.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/mivinta-pro.png" alt="Mivinta Pro (Elaichi)">
+                        <span class="product-tag">General</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Mivinta Pro (Elaichi)</h3>
+                        <p class="product-description">Nutritional supplement with cardamom flavor.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">400g</span>
+                            <span class="product-price">₹450.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Mivinta.png" alt="Mivinta">
+                        <span class="product-tag">General</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Mivinta</h3>
+                        <p class="product-description">Basic nutritional supplement for adults.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">400g</span>
+                            <span class="product-price">₹350.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Morrcef-CV.png" alt="Morrcef-CV">
+                        <span class="product-tag antibiotics">Antibiotics</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Morrcef-CV</h3>
+                        <p class="product-description">Combination antibiotic for bacterial infections.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">200mg/125mg</span>
+                            <span class="product-price">₹195.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Nilobact.png" alt="Nilobact">
+                        <span class="product-tag">General</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Nilobact</h3>
+                        <p class="product-description">Probiotic supplement for digestive health.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">10 sachets</span>
+                            <span class="product-price">₹275.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Niqcee-Z.png" alt="Niqcee-Z">
+                        <span class="product-tag">General</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Niqcee-Z</h3>
+                        <p class="product-description">Vitamin C and zinc supplement for immunity.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">500mg/10mg</span>
+                            <span class="product-price">₹225.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/NIV D3.png" alt="NIV-D3">
+                        <span class="product-tag orthopedic">Orthopedic</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">NIV-D3</h3>
+                        <p class="product-description">Vitamin D3 supplement for bone health.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">60K IU</span>
+                            <span class="product-price">₹180.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Nivrab-DSR.png" alt="Nivrab-DSR">
+                        <span class="product-tag ppi">PPI</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Nivrab-DSR</h3>
+                        <p class="product-description">Delayed-release capsule for acid reflux treatment.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">40mg</span>
+                            <span class="product-price">₹165.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/pro-nivcal.png" alt="Pro Nivcal">
+                        <span class="product-tag orthopedic">Orthopedic</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Pro Nivcal</h3>
+                        <p class="product-description">Advanced calcium supplement with vitamin D.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">500mg/250IU</span>
+                            <span class="product-price">₹245.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/u4glow.png" alt="U4Glow Facewash">
+                        <span class="product-tag dermatology">Dermatology</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">U4Glow Facewash</h3>
+                        <p class="product-description">Brightening face wash for radiant skin.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">100ml</span>
+                            <span class="product-price">₹220.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Unergy-Q10.png" alt="Unergy-Q10">
+                        <span class="product-tag">General</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Unergy-Q10</h3>
+                        <p class="product-description">Coenzyme Q10 supplement for energy and heart health.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">100mg</span>
+                            <span class="product-price">₹320.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Uphem.png" alt="Uphem">
+                        <span class="product-tag">General</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Uphem</h3>
+                        <p class="product-description">Iron supplement for anemia and iron deficiency.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">50mg</span>
+                            <span class="product-price">₹135.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Vibenerve.png" alt="Vibenerve">
+                        <span class="product-tag">General</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Vibenerve</h3>
+                        <p class="product-description">B-complex vitamins for nerve health and function.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">10 tablets</span>
+                            <span class="product-price">₹210.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Welfix-Ova.png" alt="Welfix-Ova">
+                        <span class="product-tag gynaecology">Gynaecology</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Welfix-Ova</h3>
+                        <p class="product-description">Supplement for ovarian health and fertility support.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">30 tablets</span>
+                            <span class="product-price">₹420.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Welfix-UT.png" alt="Welfix-UT">
+                        <span class="product-tag antibiotics">Antibiotics</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Welfix-UT</h3>
+                        <p class="product-description">Treatment for urinary tract infections.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">200mg</span>
+                            <span class="product-price">₹195.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Wellfipan-DSR.png" alt="Wellfipan-DSR">
+                        <span class="product-tag ppi">PPI</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Wellfipan-DSR</h3>
+                        <p class="product-description">Dual-action capsule for pancreatic enzyme supplement.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">40mg</span>
+                            <span class="product-price">₹280.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Xitcid.png" alt="Xitcid">
+                        <span class="product-tag ppi">PPI</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Xitcid</h3>
+                        <p class="product-description">Treatment for excessive stomach acid production.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">20mg</span>
+                            <span class="product-price">₹170.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="assets/img/products/Xitmox-LB625.png" alt="Xitmox-LB625">
+                        <span class="product-tag antibiotics">Antibiotics</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">Xitmox-LB625</h3>
+                        <p class="product-description">Advanced probiotic blend with lactobacillus.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">15 capsules</span>
+                            <span class="product-price">₹390.00</span>
                         </div>
                     </div>
                 </div>
@@ -344,6 +719,9 @@
                         <span class="addr-line">Kalyan (W) - 421301</span>
                     </div>
                 </div>
+                <div class="copyright-text">
+                    <p>© 2021-2025 Wellfino Pharmaceutical Pvt. Ltd.</p>
+                </div>
             </div>
             <div class="contact-section">
                 <h3 class="contact-title">CONTACT</h3>
@@ -372,14 +750,85 @@
                     </a>
                 </div>
             </div>
-            <div class="copyright-wrapper">
-                <div class="copyright-text">
-                    <p>© 2021-2025 Wellfino Pharmaceutical Pvt. Ltd.</p>
-                </div>
-            </div>
         </div>
     </footer>
 
     <script src="assets/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter products
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const productCards = document.querySelectorAll('.product-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filter = this.dataset.filter;
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter products
+                    productCards.forEach(card => {
+                        if (filter === 'all') {
+                            card.style.display = 'block';
+                        } else {
+                            const tagElement = card.querySelector('.product-tag');
+                            const tagText = tagElement ? tagElement.textContent.toLowerCase() : '';
+                            const tagClass = tagElement ? tagElement.className.toLowerCase() : '';
+                            
+                            if ((filter === 'general' && tagText === 'general') || 
+                                (filter === 'gynaecology' && (tagText === 'gynaecology' || tagClass.includes('gynaecology'))) || 
+                                (filter === 'orthopedic' && (tagText === 'orthopedic' || tagClass.includes('orthopedic'))) ||
+                                (filter === 'dermatology' && (tagText === 'dermatology' || tagClass.includes('dermatology'))) ||
+                                (filter === 'antibiotics' && (tagText === 'antibiotics' || tagClass.includes('antibiotics'))) ||
+                                (filter === 'ppi' && (tagText === 'ppi' || tagClass.includes('ppi')))) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+            
+            // Sort products
+            const sortSelect = document.getElementById('sort-products');
+            const productsGrid = document.querySelector('.products-grid');
+            
+            sortSelect.addEventListener('change', function() {
+                const sortValue = this.value;
+                const products = Array.from(productCards);
+                
+                products.sort((a, b) => {
+                    if (sortValue === 'default') return 0;
+                    
+                    const nameA = a.querySelector('.product-name').textContent;
+                    const nameB = b.querySelector('.product-name').textContent;
+                    
+                    const priceA = parseFloat(a.querySelector('.product-price').textContent.replace('₹', ''));
+                    const priceB = parseFloat(b.querySelector('.product-price').textContent.replace('₹', ''));
+                    
+                    switch(sortValue) {
+                        case 'name-asc':
+                            return nameA.localeCompare(nameB);
+                        case 'name-desc':
+                            return nameB.localeCompare(nameA);
+                        case 'price-asc':
+                            return priceA - priceB;
+                        case 'price-desc':
+                            return priceB - priceA;
+                        default:
+                            return 0;
+                    }
+                });
+                
+                // Reappend sorted products
+                products.forEach(product => {
+                    productsGrid.appendChild(product);
+                });
+            });
+        });
+    </script>
 </body>
 </html>

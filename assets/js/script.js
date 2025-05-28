@@ -174,7 +174,7 @@ if (mobileMenuBtn) {
     const navLinks = navbar.querySelectorAll('a');
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            if (isMenuOpen) {
+            if (isMenuOpen && window.innerWidth <= 768) {
                 isMenuOpen = false;
                 navbar.classList.remove('active');
                 mobileMenuBtn.innerHTML = '<i class="ri-menu-line"></i>';
@@ -183,6 +183,16 @@ if (mobileMenuBtn) {
         });
     });
 }
+
+// Handle window resize to properly restore menu state on desktop
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 768 && isMenuOpen) {
+        isMenuOpen = false;
+        navbar.classList.remove('active');
+        mobileMenuBtn.innerHTML = '<i class="ri-menu-line"></i>';
+        document.body.style.overflow = '';
+    }
+});
 
 // Improved modal for touch devices
 function openModal(modalId) {
