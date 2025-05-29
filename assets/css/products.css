@@ -218,6 +218,15 @@ main {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+/* Make sure container is responsive on all devices */
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
 /* Products Page Styles with animations */
 .products-grid {
     display: grid;
@@ -322,6 +331,8 @@ main {
     justify-content: space-between;
     align-items: center;
     margin-top: auto;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .product-dosage {
@@ -526,8 +537,32 @@ footer {
 /* Tablet responsiveness */
 @media (max-width: 992px) {
     .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 25px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    
+    .product-info {
+        padding: 20px;
+    }
+    
+    .product-name {
+        font-size: 1.1rem;
+    }
+    
+    .product-description {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+    
+    .product-meta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .product-price {
+        width: 100%;
+        text-align: left;
+        margin-top: 5px;
     }
     
     .contact-section:first-child {
@@ -537,7 +572,6 @@ footer {
     .contact-section:nth-child(2) {
         margin-left: 0;
     }
-    
 }
 
 /* Mobile responsiveness */
@@ -562,12 +596,45 @@ footer {
     }
     
     .products-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr) !important;
         gap: 15px;
+        padding: 0 10px 30px;
     }
     
     main {
         padding-top: 120px;
+    }
+    
+    .product-image {
+        height: 180px;
+    }
+    
+    .product-info {
+        padding: 15px;
+    }
+    
+    .product-name {
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+    
+    .product-description {
+        font-size: 0.85rem;
+        margin-bottom: 12px;
+        line-height: 1.4;
+    }
+    
+    .product-meta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .product-dosage {
+        display: none; /* Hide dosage capsule on mobile */
+    }
+    
+    .product-price {
+        font-size: 1.1rem;
     }
     
     /* Mobile navbar styles */
@@ -646,6 +713,7 @@ footer {
         align-items: flex-start;
         padding: 15px;
         gap: 15px;
+        margin-bottom: 25px;
     }
     
     .filter-options, .sort-options {
@@ -656,6 +724,13 @@ footer {
         justify-content: flex-start;
         display: flex;
         gap: 10px;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+    }
+    
+    .filter-options::-webkit-scrollbar, 
+    .sort-options::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
     }
     
     .filter-options {
@@ -672,6 +747,39 @@ footer {
         font-size: 0.9rem;
         white-space: nowrap;
     }
+    
+    .filter-label, .sort-label {
+        white-space: nowrap;
+        margin-right: 5px;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    /* Make filters and sort buttons more touch-friendly */
+    .filter-btn, .sort-select {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Increase touch area for product cards */
+    .product-card {
+        cursor: pointer;
+    }
+    
+    /* Improve loading performance on mobile */
+    .product-card {
+        will-change: transform;
+        backface-visibility: hidden;
+    }
+    
+    /* Hide products overflow to prevent horizontal scrolling */
+    .products-grid {
+        overflow: hidden;
+    }
 }
 
 /* Small mobile devices */
@@ -681,12 +789,47 @@ footer {
         gap: 10px;
     }
     
+    .product-card {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+    
+    .product-image {
+        height: 150px;
+    }
+    
+    .product-info {
+        padding: 12px;
+    }
+    
+    .product-name {
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+    }
+    
+    .product-description {
+        font-size: 0.8rem;
+        margin-bottom: 10px;
+        line-height: 1.3;
+    }
+    
+    .product-price {
+        font-size: 1rem;
+    }
+    
+    .product-tag {
+        padding: 4px 10px;
+        font-size: 0.7rem;
+        top: 10px;
+        right: 10px;
+    }
+    
     header {
         top: 5px;
     }
     
     nav {
-        padding: 0.4rem 0.8rem;
+        padding: 0.4rem 1.3rem;
+        margin-top: 5px;
         border-radius: 25px;
     }
     
@@ -701,6 +844,57 @@ footer {
     .filter-btn, .sort-select {
         padding: 6px 14px;
         font-size: 0.85rem;
+    }
+    
+    .filter-sort-container {
+        padding: 12px;
+        margin-bottom: 20px;
+        gap: 10px;
+    }
+    
+    .filter-options, .sort-options {
+        gap: 8px;
+        padding-bottom: 5px;
+    }
+    
+    .filter-btn, .sort-select {
+        padding: 6px 14px;
+        font-size: 0.85rem;
+        min-width: auto;
+    }
+    
+    .filter-label, .sort-label {
+        font-size: 0.85rem;
+    }
+    
+    .container {
+        padding: 0 10px;
+    }
+    
+    /* Optimize loading for slower mobile devices */
+    .products-grid {
+        content-visibility: auto;
+    }
+    
+    /* Improve tap targets */
+    .filter-btn {
+        min-width: 70px;
+    }
+    
+    /* Smoother animations on mobile */
+    .product-card:hover {
+        transform: translateY(-5px);
+    }
+}
+
+/* Orientation-specific styling */
+@media (max-width: 768px) and (orientation: landscape) {
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+    
+    .product-image {
+        height: 160px;
     }
 }
 
