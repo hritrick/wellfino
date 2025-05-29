@@ -12,106 +12,6 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/products.css">
-    <style>
-        :root {
-            --vh: 1vh;
-        }
-        
-        .products-grid {
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-        
-        .filter-sort-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        
-        .filter-options, .sort-options {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .filter-label, .sort-label {
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        
-        .filter-btn, .sort-select {
-            padding: 8px 16px;
-            border-radius: 20px;
-            border: 1px solid var(--color-border);
-            background-color: white;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .filter-btn.active {
-            background-color: #007bff;
-            color: white;
-            border-color: #007bff;
-        }
-        
-        .filter-btn:hover:not(.active) {
-            background-color: #f0f0f0;
-        }
-        
-        .sort-select {
-            padding-right: 30px;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 10px center;
-            background-size: 12px;
-        }
-        
-        @media (max-width: 768px) {
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-            
-            .filter-sort-container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .filter-options, .sort-options {
-                width: 100%;
-                overflow-x: auto;
-                padding-bottom: 5px;
-                -webkit-overflow-scrolling: touch;
-            }
-            
-            .filter-options {
-                order: 2;
-            }
-            
-            .sort-options {
-                order: 1;
-                margin-bottom: 10px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-            
-            .filter-btn, .sort-select {
-                padding: 6px 12px;
-                font-size: 0.8rem;
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -122,98 +22,13 @@
             <div class="navbar">
                 <a href="index.html#products">PRODUCTS</a>
                 <a href="index.html#about">ABOUT US</a>
-                <a href="index.html#footer" class="contact-link">CONTACT</a>
-                <a href="#" class="icon-link"><i class="ri-shopping-cart-line"></i></a>
-                <div class="auth-buttons">
-                    <button class="login-btn" onclick="openModal('loginModal')">LOGIN</button>
-                    <button class="signup-btn" onclick="openModal('signupModal')">SIGN UP</button>
-                </div>
+                <a href="#footer" class="contact-link">CONTACT</a>
             </div>
             <button class="mobile-menu-btn" aria-label="Toggle menu">
                 <i class="ri-menu-line"></i>
             </button>
         </nav>
     </header>
-
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('loginModal')">&times;</span>
-            <h2>Login</h2>
-            <form id="loginForm" class="auth-form">
-                <div class="form-group">
-                    <label for="loginEmail">Email</label>
-                    <input type="email" id="loginEmail" required>
-                </div>
-                <div class="form-group">
-                    <label for="loginPassword">Password</label>
-                    <div class="password-input">
-                        <input type="password" id="loginPassword" required>
-                        <i class="ri-eye-line toggle-password" onclick="togglePassword('loginPassword', this)"></i>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="rememberMe">
-                        <span>Remember me</span>
-                    </label>
-                    <a href="#" class="forgot-password">Forgot Password?</a>
-                </div>
-                <button type="submit" class="submit-btn">Login</button>
-                <p class="switch-form">
-                    Don't have an account? 
-                    <a href="#" onclick="switchModal('loginModal', 'signupModal')">Sign up</a>
-                </p>
-            </form>
-        </div>
-    </div>
-
-    <!-- Signup Modal -->
-    <div id="signupModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('signupModal')">&times;</span>
-            <h2>Create Account</h2>
-            <form id="signupForm" class="auth-form">
-                <div class="form-group">
-                    <label for="signupName">Full Name</label>
-                    <input type="text" id="signupName" required>
-                </div>
-                <div class="form-group">
-                    <label for="signupEmail">Email</label>
-                    <input type="email" id="signupEmail" required>
-                </div>
-                <div class="form-group">
-                    <label for="signupPhone">Phone Number</label>
-                    <input type="tel" id="signupPhone" pattern="[0-9]{10}" required>
-                </div>
-                <div class="form-group">
-                    <label for="signupPassword">Password</label>
-                    <div class="password-input">
-                        <input type="password" id="signupPassword" required>
-                        <i class="ri-eye-line toggle-password" onclick="togglePassword('signupPassword', this)"></i>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <div class="password-input">
-                        <input type="password" id="confirmPassword" required>
-                        <i class="ri-eye-line toggle-password" onclick="togglePassword('confirmPassword', this)"></i>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="termsAccept" required>
-                        <span>I accept the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
-                    </label>
-                </div>
-                <button type="submit" class="submit-btn">Create Account</button>
-                <p class="switch-form">
-                    Already have an account? 
-                    <a href="#" onclick="switchModal('signupModal', 'loginModal')">Login</a>
-                </p>
-            </form>
-        </div>
-    </div>
 
     <main>
         <div class="container">
@@ -251,7 +66,7 @@
                         <p class="product-description">Relief from cold, cough, and flu symptoms.</p>
                         <div class="product-meta">
                             <span class="product-dosage">500mg</span>
-                            <span class="product-price">₹65.00</span>
+                            <span class="product-price">₹100.00</span>
                         </div>
                     </div>
                 </div>
@@ -311,7 +126,7 @@
                         <p class="product-description">Treatment for insomnia and sleep disorders.</p>
                         <div class="product-meta">
                             <span class="product-dosage">10mg</span>
-                            <span class="product-price">₹145.00</span>
+                            <span class="product-price">₹99.00</span>
                         </div>
                     </div>
                 </div>
@@ -323,7 +138,7 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">Emvaas</h3>
-                        <p class="product-description">Statin medication for cholesterol management.</p>
+                        <p class="product-description">Gentle, pH-balanced feminine wash</p>
                         <div class="product-meta">
                             <span class="product-dosage">20mg</span>
                             <span class="product-price">₹185.00</span>
@@ -338,10 +153,10 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">Hidranergy</h3>
-                        <p class="product-description">Hydration supplement with energy-boosting electrolytes.</p>
+                        <p class="product-description">Oral Rehydration salts with electrolytes, vitamin C and lactobacillus.</p>
                         <div class="product-meta">
                             <span class="product-dosage">30 sachets</span>
-                            <span class="product-price">₹250.00</span>
+                            <span class="product-price">₹36.00</span>
                         </div>
                     </div>
                 </div>
@@ -371,7 +186,7 @@
                         <p class="product-description">Vitamin K2 with calcium for bone health.</p>
                         <div class="product-meta">
                             <span class="product-dosage">100mcg/500mg</span>
-                            <span class="product-price">₹290.00</span>
+                            <span class="product-price">₹185.00</span>
                         </div>
                     </div>
                 </div>
@@ -386,7 +201,7 @@
                         <p class="product-description">Gentle laxative for constipation relief.</p>
                         <div class="product-meta">
                             <span class="product-dosage">100mg</span>
-                            <span class="product-price">₹85.00</span>
+                            <span class="product-price">₹375.00</span>
                         </div>
                     </div>
                 </div>
@@ -398,17 +213,17 @@
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">Lubexin</h3>
-                        <p class="product-description">Eye lubricant for dry eye relief.</p>
+                        <p class="product-description">Treats fungal infections.</p>
                         <div class="product-meta">
                             <span class="product-dosage">10ml</span>
-                            <span class="product-price">₹150.00</span>
+                            <span class="product-price">₹125.00</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/Lusazic.jpg" alt="Lusazic">
+                        <img src="assets/img/products/lusazic.jpg" alt="Lusazic">
                         <span class="product-tag orthopedic">Orthopedic</span>
                     </div>
                     <div class="product-info">
@@ -416,7 +231,7 @@
                         <p class="product-description">Shampoo for hair fall and dandruff.</p>
                         <div class="product-meta">
                             <span class="product-dosage">100ml</span>
-                            <span class="product-price">₹175.00</span>
+                            <span class="product-price">₹449.00</span>
                         </div>
                     </div>
                 </div>
@@ -431,7 +246,7 @@
                         <p class="product-description">Nutritional supplement with chocolate flavor.</p>
                         <div class="product-meta">
                             <span class="product-dosage">400g</span>
-                            <span class="product-price">₹450.00</span>
+                            <span class="product-price">₹399.00</span>
                         </div>
                     </div>
                 </div>
@@ -446,7 +261,7 @@
                         <p class="product-description">Nutritional supplement with cardamom flavor.</p>
                         <div class="product-meta">
                             <span class="product-dosage">400g</span>
-                            <span class="product-price">₹450.00</span>
+                            <span class="product-price">₹399.00</span>
                         </div>
                     </div>
                 </div>
@@ -461,7 +276,7 @@
                         <p class="product-description">Basic nutritional supplement for adults.</p>
                         <div class="product-meta">
                             <span class="product-dosage">400g</span>
-                            <span class="product-price">₹350.00</span>
+                            <span class="product-price">₹165.00</span>
                         </div>
                     </div>
                 </div>
@@ -476,7 +291,7 @@
                         <p class="product-description">Combination antibiotic for bacterial infections.</p>
                         <div class="product-meta">
                             <span class="product-dosage">200mg/125mg</span>
-                            <span class="product-price">₹195.00</span>
+                            <span class="product-price">₹265.00</span>
                         </div>
                     </div>
                 </div>
@@ -491,7 +306,7 @@
                         <p class="product-description">Probiotic supplement for digestive health.</p>
                         <div class="product-meta">
                             <span class="product-dosage">10 sachets</span>
-                            <span class="product-price">₹275.00</span>
+                            <span class="product-price">₹145.00</span>
                         </div>
                     </div>
                 </div>
@@ -506,7 +321,7 @@
                         <p class="product-description">Vitamin C and zinc supplement for immunity.</p>
                         <div class="product-meta">
                             <span class="product-dosage">500mg/10mg</span>
-                            <span class="product-price">₹225.00</span>
+                            <span class="product-price">₹125.00</span>
                         </div>
                     </div>
                 </div>
@@ -551,7 +366,7 @@
                         <p class="product-description">Advanced calcium supplement with vitamin D.</p>
                         <div class="product-meta">
                             <span class="product-dosage">500mg/250IU</span>
-                            <span class="product-price">₹245.00</span>
+                            <span class="product-price">₹175.00</span>
                         </div>
                     </div>
                 </div>
@@ -581,7 +396,7 @@
                         <p class="product-description">Coenzyme Q10 supplement for energy and heart health.</p>
                         <div class="product-meta">
                             <span class="product-dosage">100mg</span>
-                            <span class="product-price">₹320.00</span>
+                            <span class="product-price">₹525.00</span>
                         </div>
                     </div>
                 </div>
@@ -596,7 +411,7 @@
                         <p class="product-description">Iron supplement for anemia and iron deficiency.</p>
                         <div class="product-meta">
                             <span class="product-dosage">50mg</span>
-                            <span class="product-price">₹135.00</span>
+                            <span class="product-price">₹175.00</span>
                         </div>
                     </div>
                 </div>
@@ -611,14 +426,14 @@
                         <p class="product-description">B-complex vitamins for nerve health and function.</p>
                         <div class="product-meta">
                             <span class="product-dosage">10 tablets</span>
-                            <span class="product-price">₹210.00</span>
+                            <span class="product-price">₹275.00</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/Welfix-Ova.png" alt="Welfix-Ova">
+                        <img src="assets/img/products/welfix-ova.png" alt="Welfix-Ova">
                         <span class="product-tag gynaecology">Gynaecology</span>
                     </div>
                     <div class="product-info">
@@ -626,7 +441,7 @@
                         <p class="product-description">Supplement for ovarian health and fertility support.</p>
                         <div class="product-meta">
                             <span class="product-dosage">30 tablets</span>
-                            <span class="product-price">₹420.00</span>
+                            <span class="product-price">₹285.00</span>
                         </div>
                     </div>
                 </div>
@@ -641,22 +456,22 @@
                         <p class="product-description">Treatment for urinary tract infections.</p>
                         <div class="product-meta">
                             <span class="product-dosage">200mg</span>
-                            <span class="product-price">₹195.00</span>
+                            <span class="product-price">₹225.00</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/welfipan-dsr.png" alt="Welfipan-DSR">
+                        <img src="assets/img/products/welfipan-dsr.png" alt="Wellfipan-DSR">
                         <span class="product-tag ppi">PPI</span>
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">Welfipan-DSR</h3>
-                        <p class="product-description">Dual-action capsule for pancreatic enzyme supplement.</p>
+                        <p class="product-description">Treats Acidity, Nausea, Peptic Ulcer and Vomiting.</p>
                         <div class="product-meta">
                             <span class="product-dosage">40mg</span>
-                            <span class="product-price">₹280.00</span>
+                            <span class="product-price">₹125.00</span>
                         </div>
                     </div>
                 </div>
@@ -686,7 +501,7 @@
                         <p class="product-description">Advanced probiotic blend with lactobacillus.</p>
                         <div class="product-meta">
                             <span class="product-dosage">15 capsules</span>
-                            <span class="product-price">₹390.00</span>
+                            <span class="product-price">₹166.00</span>
                         </div>
                     </div>
                 </div>
@@ -696,18 +511,6 @@
 
     <footer id="footer">
         <div class="footer-content">
-            <div class="map-section">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.5455770927823!2d73.12814837375799!3d19.21061218226404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be795c34caa3c3d%3A0x4c7c2c5f3b4bc3e2!2sWellfino%20Pharmaceutical%20Pvt.%20Ltd.!5e0!3m2!1sen!2sin!4v1711006826013!5m2!1sen!2sin"
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade" 
-                    title="Wellfino Pharmaceutical Location">
-                </iframe>
-                <a href="https://maps.google.com/maps?q=Wellfino+Pharmaceutical+Pvt.+Ltd.&ll=19.210612,73.128148" class="map-link" target="_blank" rel="noopener noreferrer">
-                    <i class="ri-map-2-fill"></i> Open in Google Maps
-                </a>
-            </div>
             <div class="contact-section">
                 <h3 class="contact-title">OFFICE ADDRESS</h3>
                 <div class="contact-item address">
@@ -716,12 +519,12 @@
                         <span class="addr-line">Wellfino Pharmaceutical Pvt. Ltd.</span>
                         <span class="addr-line">Office No. 3/4, Jadhav Gadh Building</span>
                         <span class="addr-line">Near Shani Mandir, Godrej Hill</span>
-                        <span class="addr-line">Kalyan (W) - 421301</span>
+                        <span class="addr-line">Kalyan West, Maharashtra - 421301</span>
                     </div>
                 </div>
-                <div class="copyright-text">
-                    <p>© 2021-2025 Wellfino Pharmaceutical Pvt. Ltd.</p>
-                </div>
+                <a href="https://maps.google.com/maps?q=Wellfino+Pharmaceutical+Pvt.+Ltd.&ll=19.210612,73.128148" class="map-link" target="_blank" rel="noopener noreferrer">
+                    <i class="ri-map-2-fill"></i> Open in Google Maps
+                </a>
             </div>
             <div class="contact-section">
                 <h3 class="contact-title">CONTACT</h3>
@@ -751,84 +554,12 @@
                 </div>
             </div>
         </div>
+        <div class="copyright-text">
+            <p>© 2021-2025 Wellfino Pharmaceutical Pvt. Ltd.</p>
+        </div>
     </footer>
 
     <script src="assets/js/script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Filter products
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const productCards = document.querySelectorAll('.product-card');
-            
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const filter = this.dataset.filter;
-                    
-                    // Update active button
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Filter products
-                    productCards.forEach(card => {
-                        if (filter === 'all') {
-                            card.style.display = 'block';
-                        } else {
-                            const tagElement = card.querySelector('.product-tag');
-                            const tagText = tagElement ? tagElement.textContent.toLowerCase() : '';
-                            const tagClass = tagElement ? tagElement.className.toLowerCase() : '';
-                            
-                            if ((filter === 'general' && tagText === 'general') || 
-                                (filter === 'gynaecology' && (tagText === 'gynaecology' || tagClass.includes('gynaecology'))) || 
-                                (filter === 'orthopedic' && (tagText === 'orthopedic' || tagClass.includes('orthopedic'))) ||
-                                (filter === 'dermatology' && (tagText === 'dermatology' || tagClass.includes('dermatology'))) ||
-                                (filter === 'antibiotics' && (tagText === 'antibiotics' || tagClass.includes('antibiotics'))) ||
-                                (filter === 'ppi' && (tagText === 'ppi' || tagClass.includes('ppi')))) {
-                                card.style.display = 'block';
-                            } else {
-                                card.style.display = 'none';
-                            }
-                        }
-                    });
-                });
-            });
-            
-            // Sort products
-            const sortSelect = document.getElementById('sort-products');
-            const productsGrid = document.querySelector('.products-grid');
-            
-            sortSelect.addEventListener('change', function() {
-                const sortValue = this.value;
-                const products = Array.from(productCards);
-                
-                products.sort((a, b) => {
-                    if (sortValue === 'default') return 0;
-                    
-                    const nameA = a.querySelector('.product-name').textContent;
-                    const nameB = b.querySelector('.product-name').textContent;
-                    
-                    const priceA = parseFloat(a.querySelector('.product-price').textContent.replace('₹', ''));
-                    const priceB = parseFloat(b.querySelector('.product-price').textContent.replace('₹', ''));
-                    
-                    switch(sortValue) {
-                        case 'name-asc':
-                            return nameA.localeCompare(nameB);
-                        case 'name-desc':
-                            return nameB.localeCompare(nameA);
-                        case 'price-asc':
-                            return priceA - priceB;
-                        case 'price-desc':
-                            return priceB - priceA;
-                        default:
-                            return 0;
-                    }
-                });
-                
-                // Reappend sorted products
-                products.forEach(product => {
-                    productsGrid.appendChild(product);
-                });
-            });
-        });
-    </script>
+    <script src="assets/js/products.js"></script>
 </body>
 </html>

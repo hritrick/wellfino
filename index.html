@@ -12,36 +12,6 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
     rel="stylesheet"/>
     <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-        :root {
-            --vh: 1vh;
-        }
-        
-        @media (max-width: 768px) {
-            .hero-section {
-                height: calc(var(--vh, 1vh) * 70);
-                min-height: auto;
-            }
-            
-            .footer-content {
-                text-align: center;
-            }
-            
-            .contact-section {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .address-text {
-                text-align: center;
-            }
-            
-            .social-section {
-                margin: 0 auto;
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -53,11 +23,6 @@
                 <a href="products.html">PRODUCTS</a>
                 <a href="#about">ABOUT US</a>
                 <a href="#footer" class="contact-link">CONTACT</a>
-                <a href="#" class="icon-link"><i class="ri-shopping-cart-line"></i></a>
-                <div class="auth-buttons">
-                    <button class="login-btn" onclick="openModal('loginModal')">LOGIN</button>
-                    <button class="signup-btn" onclick="openModal('signupModal')">SIGN UP</button>
-                </div>
             </div>
             <button class="mobile-menu-btn" aria-label="Toggle menu">
                 <i class="ri-menu-line"></i>
@@ -65,96 +30,16 @@
         </nav>
     </header>
 
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('loginModal')">&times;</span>
-            <h2>Login</h2>
-            <form id="loginForm" class="auth-form">
-                <div class="form-group">
-                    <label for="loginEmail">Email</label>
-                    <input type="email" id="loginEmail" required>
-                </div>
-                <div class="form-group">
-                    <label for="loginPassword">Password</label>
-                    <div class="password-input">
-                        <input type="password" id="loginPassword" required>
-                        <i class="ri-eye-line toggle-password" onclick="togglePassword('loginPassword', this)"></i>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="rememberMe">
-                        <span>Remember me</span>
-                    </label>
-                    <a href="#" class="forgot-password">Forgot Password?</a>
-                </div>
-                <button type="submit" class="submit-btn">Login</button>
-                <p class="switch-form">
-                    Don't have an account? 
-                    <a href="#" onclick="switchModal('loginModal', 'signupModal')">Sign up</a>
-                </p>
-            </form>
-        </div>
-    </div>
-
-    <!-- Signup Modal -->
-    <div id="signupModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeModal('signupModal')">&times;</span>
-            <h2>Create Account</h2>
-            <form id="signupForm" class="auth-form">
-                <div class="form-group">
-                    <label for="signupName">Full Name</label>
-                    <input type="text" id="signupName" required>
-                </div>
-                <div class="form-group">
-                    <label for="signupEmail">Email</label>
-                    <input type="email" id="signupEmail" required>
-                </div>
-                <div class="form-group">
-                    <label for="signupPhone">Phone Number</label>
-                    <input type="tel" id="signupPhone" pattern="[0-9]{10}" required>
-                </div>
-                <div class="form-group">
-                    <label for="signupPassword">Password</label>
-                    <div class="password-input">
-                        <input type="password" id="signupPassword" required>
-                        <i class="ri-eye-line toggle-password" onclick="togglePassword('signupPassword', this)"></i>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <div class="password-input">
-                        <input type="password" id="confirmPassword" required>
-                        <i class="ri-eye-line toggle-password" onclick="togglePassword('confirmPassword', this)"></i>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="termsAccept" required>
-                        <span>I accept the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></span>
-                    </label>
-                </div>
-                <button type="submit" class="submit-btn">Create Account</button>
-                <p class="switch-form">
-                    Already have an account? 
-                    <a href="#" onclick="switchModal('signupModal', 'loginModal')">Login</a>
-                </p>
-            </form>
-        </div>
-    </div>
-
     <main>
         <section class="hero-section">
+            <div class="hero-background" style="background-image: url('assets/img/hero-bg.jpg');"></div>
             <div class="hero-overlay"></div>
-            <div class="hero-background active" style="background-image: url('assets/img/hero-bg.jpg')"></div>
-            <div class="hero-background" style="background-image: url('assets/img/hero-bg-2.jpg')"></div>
-            <div class="hero-background" style="background-image: url('assets/img/hero-bg-3.jpg')"></div>
-            <div class="hero-background" style="background-image: url('assets/img/hero-bg-4.jpg')"></div>
-            <div class="hero-content">
-                <h1>Advancing Healthcare Through Innovation</h1>
-                <p>At Wellfino Pharmaceutical, we're dedicated to developing breakthrough medicines and improving lives through cutting-edge research and development.</p>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>Advancing Healthcare Through Innovation</h1>
+                    <p>At Wellfino Pharmaceutical, we're dedicated to developing breakthrough medicines and improving lives through cutting-edge research and development.</p>
+                    <a href="products.html" class="hero-button">View Products <i class="ri-arrow-right-line"></i></a>
+                </div>
             </div>
         </section>
 
@@ -362,18 +247,6 @@
     </main>
     <footer id="footer">
         <div class="footer-content">
-            <div class="map-section">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3767.5455770927823!2d73.12814837375799!3d19.21061218226404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be795c34caa3c3d%3A0x4c7c2c5f3b4bc3e2!2sWellfino%20Pharmaceutical%20Pvt.%20Ltd.!5e0!3m2!1sen!2sin!4v1711006826013!5m2!1sen!2sin"
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade" 
-                    title="Wellfino Pharmaceutical Location">
-                </iframe>
-                <a href="https://maps.google.com/maps?q=Wellfino+Pharmaceutical+Pvt.+Ltd.&ll=19.210612,73.128148" class="map-link" target="_blank" rel="noopener noreferrer">
-                    <i class="ri-map-2-fill"></i> Open in Google Maps
-                </a>
-            </div>
             <div class="contact-section">
                 <h3 class="contact-title">OFFICE ADDRESS</h3>
                 <div class="contact-item address">
@@ -382,12 +255,12 @@
                         <span class="addr-line">Wellfino Pharmaceutical Pvt. Ltd.</span>
                         <span class="addr-line">Office No. 3/4, Jadhav Gadh Building</span>
                         <span class="addr-line">Near Shani Mandir, Godrej Hill</span>
-                        <span class="addr-line">Kalyan (W) - 421301</span>
+                        <span class="addr-line">Kalyan West, Maharashtra - 421301</span>
                     </div>
                 </div>
-                <div class="copyright-text">
-                    <p>© 2021-2025 Wellfino Pharmaceutical Pvt. Ltd.</p>
-                </div>
+                <a href="https://maps.google.com/maps?q=Wellfino+Pharmaceutical+Pvt.+Ltd.&ll=19.210612,73.128148" class="map-link" target="_blank" rel="noopener noreferrer">
+                    <i class="ri-map-2-fill"></i> Open in Google Maps
+                </a>
             </div>
             <div class="contact-section">
                 <h3 class="contact-title">CONTACT</h3>
@@ -416,6 +289,9 @@
                     </a>
                 </div>
             </div>
+        </div>
+        <div class="copyright-text">
+            <p>© 2021-2025 Wellfino Pharmaceutical Pvt. Ltd.</p>
         </div>
     </footer>
     <script src="assets/js/script.js"></script>
