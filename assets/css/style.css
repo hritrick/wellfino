@@ -3044,7 +3044,7 @@ img {
     }
     
     .hero-content {
-        margin-top: 0; /* Adjusted for mobile */
+        margin-top: 100px; /* Adjusted for mobile */
         padding: 30px 20px;
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
     }
