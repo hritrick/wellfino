@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="theme-color" content="#007bff">
+    <title>U4Glow Facewash - Wellfino Pharmaceutical</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/product-detail.css">
+    <style>
+        header {
+            position: fixed;
+            top: 20px;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: transparent;
+            padding: 0 2rem;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            justify-content: center;
+            pointer-events: none;
+        }
+        
+        header.scrolled {
+            top: 10px;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            width: 92%;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50px;
+            padding: 0.7rem 1.8rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: auto;
+        }
+        
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            height: 100%;
+            padding: 0.4rem 0;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .logo-link:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-link img {
+            height: 42px;
+            width: auto;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .back-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            transform: translateX(-5px);
+        }
+        
+        .back-link i {
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                top: 10px;
+                padding: 0 0.8rem;
+            }
+            
+            .logo-container {
+                width: 95%;
+                padding: 0.5rem 1.3rem;
+            }
+            
+            .logo-link img {
+                height: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <a href="../index.html" class="logo-link">
+                <img src="../assets/img/Wellfino Logo.png" alt="Wellfino Pharmaceutical Logo">
+            </a>
+            <a href="../products.html" class="back-link">
+                <i class="ri-arrow-left-line"></i> Back to Products
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="product-detail-container">
+            <div class="product-detail">
+                <div class="product-detail-image">
+                    <img src="../assets/img/products/u4glow.png" alt="U4Glow Facewash">
+                </div>
+                <div class="product-detail-content">
+                    <span class="product-detail-tag">Dermatology</span>
+                    <h1 class="product-detail-title">U4Glow Facewash</h1>
+                    <div class="product-detail-price">₹220.00</div>
+                    
+                    <div class="product-detail-description">
+                        <h3>Product Description</h3>
+                        <p>U4Glow Facewash is a premium dermatological cleanser specifically formulated to enhance skin radiance and promote a brighter complexion. This gentle yet effective face wash combines potent brightening agents with nourishing ingredients to cleanse the skin of impurities while targeting uneven skin tone, dullness, and discoloration.</p>
+                        <p>The advanced formula incorporates natural extracts and dermatologically-tested ingredients that help to inhibit excess melanin production, remove dead skin cells, and provide antioxidant protection. Regular use of U4Glow Facewash helps to reveal clearer, more luminous skin with improved texture and a healthy glow, making it an excellent choice for those seeking a more radiant complexion.</p>
+                    </div>
+                    
+                    <div class="product-detail-meta">
+                        <div class="product-detail-meta-item">
+                            <span class="product-detail-meta-label">Dosage</span>
+                            <span class="product-detail-meta-value">100ml</span>
+                        </div>
+                        <div class="product-detail-meta-item">
+                            <span class="product-detail-meta-label">Pack Size</span>
+                            <span class="product-detail-meta-value">1 tube</span>
+                        </div>
+                        <div class="product-detail-meta-item">
+                            <span class="product-detail-meta-label">Category</span>
+                            <span class="product-detail-meta-value">Dermatology</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer">
+        <div class="footer-content">
+            <div class="contact-section">
+                <h3 class="contact-title">OFFICE ADDRESS</h3>
+                <div class="contact-item address">
+                    <i class="ri-map-pin-line"></i>
+                    <div class="address-text">
+                        <span class="addr-line">Wellfino Pharmaceutical Pvt. Ltd.</span>
+                        <span class="addr-line">Office No. 3/4, Jadhav Gadh Building</span>
+                        <span class="addr-line">Near Shani Mandir, Godrej Hill</span>
+                        <span class="addr-line">Kalyan West, Maharashtra - 421301</span>
+                    </div>
+                </div>
+                <a href="https://maps.google.com/maps?q=Wellfino+Pharmaceutical+Pvt.+Ltd.&ll=19.210612,73.128148" class="map-link" target="_blank" rel="noopener noreferrer">
+                    <i class="ri-map-2-fill"></i> Open in Google Maps
+                </a>
+            </div>
+            <div class="contact-section">
+                <h3 class="contact-title">CONTACT</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="ri-mail-line"></i>
+                        <a href="mailto:sales@wellfinopharmaceutical.in">sales@wellfinopharmaceutical.in</a>
+                    </div>
+                    <div class="contact-item phone-numbers">
+                        <i class="ri-phone-line"></i>
+                        <div class="phone-list">
+                            <a href="tel:+918082518822">+91 8082518822</a>
+                            <a href="tel:+919833754729">+91 9833754729</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="social-section">
+                <h3 class="contact-title">SOCIALS</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/people/Wellfino-Pharmaceuticals/61575057133543/" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i class="ri-facebook-fill"></i>
+                    </a>
+                    <a href="https://in.linkedin.com/company/wellfino-pharmaceutical-pvt-ltd" target="_blank" rel="noopener noreferrer" class="social-link">
+                        <i class="ri-linkedin-fill"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-text">
+            <p>© 2021-2025 Wellfino Pharmaceutical Pvt. Ltd.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle scroll events for header styling
+            function handleScroll() {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    if (!header.classList.contains('scrolled')) {
+                        header.classList.add('scrolled');
+                        // Adjust logo size on scroll
+                        const logoImg = document.querySelector('.logo-link img');
+                        if (logoImg) {
+                            logoImg.style.transition = 'height 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+                            logoImg.style.height = '36px';
+                        }
+                    }
+                } else {
+                    if (header.classList.contains('scrolled')) {
+                        header.classList.remove('scrolled');
+                        // Reset logo size
+                        const logoImg = document.querySelector('.logo-link img');
+                        if (logoImg) {
+                            logoImg.style.transition = 'height 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+                            logoImg.style.height = '';
+                        }
+                    }
+                }
+            }
+
+            // Add scroll event listener
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            // Initialize on page load
+            handleScroll();
+        });
+    </script>
+</body>
+</html> 

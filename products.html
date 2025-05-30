@@ -20,7 +20,7 @@
                 <img src="assets/img/Wellfino Logo.png" alt="Wellfino Pharmaceutical Logo">
             </a>
             <div class="navbar">
-                <a href="index.html#products">PRODUCTS</a>
+                <a href="products.html" class="active">PRODUCTS</a>
                 <a href="index.html#about">ABOUT US</a>
                 <a href="#footer" class="contact-link">CONTACT</a>
             </div>
@@ -35,13 +35,15 @@
             <div class="filter-sort-container">
                 <div class="filter-options">
                     <span class="filter-label">Filter:</span>
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="general">General</button>
-                    <button class="filter-btn" data-filter="gynaecology">Gynaecology</button>
-                    <button class="filter-btn" data-filter="orthopedic">Orthopedic</button>
-                    <button class="filter-btn" data-filter="dermatology">Dermatology</button>
-                    <button class="filter-btn" data-filter="antibiotics">Antibiotics</button>
-                    <button class="filter-btn" data-filter="ppi">PPI</button>
+                    <select class="filter-select" id="filter-products">
+                        <option value="all">All Categories</option>
+                        <option value="general">General</option>
+                        <option value="gynaecology">Gynaecology</option>
+                        <option value="orthopedic">Orthopedic</option>
+                        <option value="dermatology">Dermatology</option>
+                        <option value="antibiotics">Antibiotics</option>
+                        <option value="ppi">PPI</option>
+                    </select>
                 </div>
                 <div class="sort-options">
                     <span class="sort-label">Sort by:</span>
@@ -58,11 +60,15 @@
             <div class="products-grid">
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/Acepimol-Cold.png" alt="Acepimol-Cold">
+                        <a href="product-pages/acepimol-cold.html" class="product-link">
+                            <img src="assets/img/products/Acepimol-Cold.png" alt="Acepimol-Cold">
+                        </a>
                         <span class="product-tag">General</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Acepimol-Cold</h3>
+                        <a href="product-pages/acepimol-cold.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Acepimol-Cold</h3>
+                        </a>
                         <p class="product-description">Relief from cold, cough, and flu symptoms.</p>
                         <div class="product-meta">
                             <span class="product-dosage">500mg</span>
@@ -73,11 +79,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/Acepimol-SP.png" alt="Acepimol-SP">
+                        <a href="product-pages/acepimol-sp.html" class="product-link">
+                            <img src="assets/img/products/Acepimol-SP.png" alt="Acepimol-SP">
+                        </a>
                         <span class="product-tag">General</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Acepimol-SP</h3>
+                        <a href="product-pages/acepimol-sp.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Acepimol-SP</h3>
+                        </a>
                         <p class="product-description">Strong pain reliever with extended release formula.</p>
                         <div class="product-meta">
                             <span class="product-dosage">650mg</span>
@@ -88,11 +98,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/Allemont-LC.png" alt="Allemont-LC">
+                        <a href="product-pages/allemont-lc.html" class="product-link">
+                            <img src="assets/img/products/Allemont-LC.png" alt="Allemont-LC">
+                        </a>
                         <span class="product-tag">General</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Allemont-LC</h3>
+                        <a href="product-pages/allemont-lc.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Allemont-LC</h3>
+                        </a>
                         <p class="product-description">Anti-allergic combination for allergic rhinitis and cough.</p>
                         <div class="product-meta">
                             <span class="product-dosage">5mg/10mg</span>
@@ -103,11 +117,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/Blissglow-H.png" alt="Blissglow-H">
+                        <a href="product-pages/blissglow-h.html" class="product-link">
+                            <img src="assets/img/products/Blissglow-H.png" alt="Blissglow-H">
+                        </a>
                         <span class="product-tag dermatology">Dermatology</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Blissglow-H</h3>
+                        <a href="product-pages/blissglow-h.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Blissglow-H</h3>
+                        </a>
                         <p class="product-description">Advanced skin cream for hydration and brightening.</p>
                         <div class="product-meta">
                             <span class="product-dosage">50g</span>
@@ -118,11 +136,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/Dozinix.png" alt="Dozinix">
+                        <a href="product-pages/dozinix.html" class="product-link">
+                            <img src="assets/img/products/Dozinix.png" alt="Dozinix">
+                        </a>
                         <span class="product-tag">General</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Dozinix</h3>
+                        <a href="product-pages/dozinix.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Dozinix</h3>
+                        </a>
                         <p class="product-description">Treatment for insomnia and sleep disorders.</p>
                         <div class="product-meta">
                             <span class="product-dosage">10mg</span>
@@ -133,11 +155,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/Emvaas.png" alt="Emvaas">
+                        <a href="product-pages/emvaas.html" class="product-link">
+                            <img src="assets/img/products/Emvaas.png" alt="Emvaas">
+                        </a>
                         <span class="product-tag">General</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Emvaas</h3>
+                        <a href="product-pages/emvaas.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Emvaas</h3>
+                        </a>
                         <p class="product-description">Gentle, pH-balanced feminine wash</p>
                         <div class="product-meta">
                             <span class="product-dosage">20mg</span>
@@ -148,11 +174,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/Hidranergy.png" alt="Hidranergy">
+                        <a href="product-pages/hidranergy.html" class="product-link">
+                            <img src="assets/img/products/Hidranergy.png" alt="Hidranergy">
+                        </a>
                         <span class="product-tag">General</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Hidranergy</h3>
+                        <a href="product-pages/hidranergy.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Hidranergy</h3>
+                        </a>
                         <p class="product-description">Oral Rehydration salts with electrolytes, vitamin C and lactobacillus.</p>
                         <div class="product-meta">
                             <span class="product-dosage">30 sachets</span>
@@ -163,26 +193,34 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/jigfol.jpg" alt="Jigfol">
+                        <a href="product-pages/jigfol.html" class="product-link">
+                            <img src="assets/img/products/jigfol.jpg" alt="Jigfol">
+                        </a>
                         <span class="product-tag gynaecology">Gynaecology</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Jigfol</h3>
+                        <a href="product-pages/jigfol.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Jigfol</h3>
+                        </a>
                         <p class="product-description">Folic acid supplement for pregnancy health.</p>
                         <div class="product-meta">
                             <span class="product-dosage">5mg</span>
-                            <span class="product-price">₹125.00</span>
+                            <span class="product-price">₹225.00</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/K2-Nivcal.png" alt="K2-Nivcal">
+                        <a href="product-pages/k2-nivcal.html" class="product-link">
+                            <img src="assets/img/products/K2-Nivcal.png" alt="K2-Nivcal">
+                        </a>
                         <span class="product-tag orthopedic">Orthopedic</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">K2-Nivcal</h3>
+                        <a href="product-pages/k2-nivcal.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">K2-Nivcal</h3>
+                        </a>
                         <p class="product-description">Vitamin K2 with calcium for bone health.</p>
                         <div class="product-meta">
                             <span class="product-dosage">100mcg/500mg</span>
@@ -193,11 +231,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/Laxomyn.png" alt="Laxomyn">
+                        <a href="product-pages/laxomyn.html" class="product-link">
+                            <img src="assets/img/products/Laxomyn.png" alt="Laxomyn">
+                        </a>
                         <span class="product-tag">Orthopedic</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Laxomyn</h3>
+                        <a href="product-pages/laxomyn.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Laxomyn</h3>
+                        </a>
                         <p class="product-description">Gentle laxative for constipation relief.</p>
                         <div class="product-meta">
                             <span class="product-dosage">100mg</span>
@@ -208,11 +250,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/Lubexin.png" alt="Lubexin">
+                        <a href="product-pages/lubexin.html" class="product-link">
+                            <img src="assets/img/products/Lubexin.png" alt="Lubexin">
+                        </a>
                         <span class="product-tag">Dermatology</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Lubexin</h3>
+                        <a href="product-pages/lubexin.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Lubexin</h3>
+                        </a>
                         <p class="product-description">Treats fungal infections.</p>
                         <div class="product-meta">
                             <span class="product-dosage">10ml</span>
@@ -223,11 +269,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/lusazic.jpg" alt="Lusazic">
+                        <a href="product-pages/lusazic.html" class="product-link">
+                            <img src="assets/img/products/lusazic.jpg" alt="Lusazic">
+                        </a>
                         <span class="product-tag orthopedic">Orthopedic</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Lusazic</h3>
+                        <a href="product-pages/lusazic.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Lusazic</h3>
+                        </a>
                         <p class="product-description">Shampoo for hair fall and dandruff.</p>
                         <div class="product-meta">
                             <span class="product-dosage">100ml</span>
@@ -238,11 +288,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/mivinta-pro-choc.png" alt="Mivinta Pro (Chocolate)">
+                        <a href="product-pages/mivinta-pro-choc.html" class="product-link">
+                            <img src="assets/img/products/mivinta-pro-choc.png" alt="Mivinta Pro (Chocolate)">
+                        </a>
                         <span class="product-tag">General</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Mivinta Pro (Chocolate)</h3>
+                        <a href="product-pages/mivinta-pro-choc.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Mivinta Pro (Chocolate)</h3>
+                        </a>
                         <p class="product-description">Nutritional supplement with chocolate flavor.</p>
                         <div class="product-meta">
                             <span class="product-dosage">400g</span>
@@ -253,11 +307,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/mivinta-pro.jpg" alt="Mivinta Pro (Elaichi)">
+                        <a href="product-pages/mivinta-pro-elaichi.html" class="product-link">
+                            <img src="assets/img/products/mivinta-pro.jpg" alt="Mivinta Pro (Elaichi)">
+                        </a>
                         <span class="product-tag">General</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Mivinta Pro (Elaichi)</h3>
+                        <a href="product-pages/mivinta-pro-elaichi.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Mivinta Pro (Elaichi)</h3>
+                        </a>
                         <p class="product-description">Nutritional supplement with cardamom flavor.</p>
                         <div class="product-meta">
                             <span class="product-dosage">400g</span>
@@ -268,11 +326,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/Mivinta.png" alt="Mivinta">
+                        <a href="product-pages/mivinta.html" class="product-link">
+                            <img src="assets/img/products/Mivinta.png" alt="Mivinta">
+                        </a>
                         <span class="product-tag">General</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Mivinta</h3>
+                        <a href="product-pages/mivinta.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Mivinta</h3>
+                        </a>
                         <p class="product-description">Basic nutritional supplement for adults.</p>
                         <div class="product-meta">
                             <span class="product-dosage">400g</span>
@@ -283,11 +345,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/Morrcef-CV.png" alt="Morrcef-CV">
+                        <a href="product-pages/morrcef-cv.html" class="product-link">
+                            <img src="assets/img/products/Morrcef-CV.png" alt="Morrcef-CV">
+                        </a>
                         <span class="product-tag antibiotics">Antibiotics</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Morrcef-CV</h3>
+                        <a href="product-pages/morrcef-cv.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Morrcef-CV</h3>
+                        </a>
                         <p class="product-description">Combination antibiotic for bacterial infections.</p>
                         <div class="product-meta">
                             <span class="product-dosage">200mg/125mg</span>
@@ -298,11 +364,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/Nilobact.png" alt="Nilobact">
-                        <span class="product-tag">General</span>
+                        <a href="product-pages/nilobact.html" class="product-link">
+                            <img src="assets/img/products/Nilobact.png" alt="Nilobact">
+                        </a>
+                        <span class="product-tag antibiotics">Antibiotics</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Nilobact</h3>
+                        <a href="product-pages/nilobact.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Nilobact</h3>
+                        </a>
                         <p class="product-description">Probiotic supplement for digestive health.</p>
                         <div class="product-meta">
                             <span class="product-dosage">10 sachets</span>
@@ -313,11 +383,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/Niqcee-Z.png" alt="Niqcee-Z">
+                        <a href="product-pages/niqcee-z.html" class="product-link">
+                            <img src="assets/img/products/Niqcee-Z.png" alt="Niqcee-Z">
+                        </a>
                         <span class="product-tag">General</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Niqcee-Z</h3>
+                        <a href="product-pages/niqcee-z.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Niqcee-Z</h3>
+                        </a>
                         <p class="product-description">Vitamin C and zinc supplement for immunity.</p>
                         <div class="product-meta">
                             <span class="product-dosage">500mg/10mg</span>
@@ -328,11 +402,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/NIV D3.png" alt="NIV-D3">
+                        <a href="product-pages/niv-d3.html" class="product-link">
+                            <img src="assets/img/products/NIV D3.png" alt="NIV-D3">
+                        </a>
                         <span class="product-tag orthopedic">Orthopedic</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">NIV-D3</h3>
+                        <a href="product-pages/niv-d3.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">NIV-D3</h3>
+                        </a>
                         <p class="product-description">Vitamin D3 supplement for bone health.</p>
                         <div class="product-meta">
                             <span class="product-dosage">60K IU</span>
@@ -343,11 +421,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/Nivrab-DSR.png" alt="Nivrab-DSR">
+                        <a href="product-pages/nivrab-dsr.html" class="product-link">
+                            <img src="assets/img/products/Nivrab-DSR.png" alt="Nivrab-DSR">
+                        </a>
                         <span class="product-tag ppi">PPI</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Nivrab-DSR</h3>
+                        <a href="product-pages/nivrab-dsr.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Nivrab-DSR</h3>
+                        </a>
                         <p class="product-description">Delayed-release capsule for acid reflux treatment.</p>
                         <div class="product-meta">
                             <span class="product-dosage">40mg</span>
@@ -358,11 +440,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/pro-nivcal.png" alt="Pro Nivcal">
+                        <a href="product-pages/pro-nivcal.html" class="product-link">
+                            <img src="assets/img/products/pro-nivcal.png" alt="Pro Nivcal">
+                        </a>
                         <span class="product-tag orthopedic">Orthopedic</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Pro Nivcal</h3>
+                        <a href="product-pages/pro-nivcal.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Pro Nivcal</h3>
+                        </a>
                         <p class="product-description">Advanced calcium supplement with vitamin D.</p>
                         <div class="product-meta">
                             <span class="product-dosage">500mg/250IU</span>
@@ -373,11 +459,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/u4glow.png" alt="U4Glow Facewash">
+                        <a href="product-pages/u4glow-facewash.html" class="product-link">
+                            <img src="assets/img/products/u4glow.png" alt="U4Glow Facewash">
+                        </a>
                         <span class="product-tag dermatology">Dermatology</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">U4Glow Facewash</h3>
+                        <a href="product-pages/u4glow-facewash.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">U4Glow Facewash</h3>
+                        </a>
                         <p class="product-description">Brightening face wash for radiant skin.</p>
                         <div class="product-meta">
                             <span class="product-dosage">100ml</span>
@@ -388,11 +478,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/Unergy-Q10.png" alt="Unergy-Q10">
+                        <a href="product-pages/unergy-q10.html" class="product-link">
+                            <img src="assets/img/products/Unergy-Q10.png" alt="Unergy-Q10">
+                        </a>
                         <span class="product-tag">General</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Unergy-Q10</h3>
+                        <a href="product-pages/unergy-q10.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Unergy-Q10</h3>
+                        </a>
                         <p class="product-description">Coenzyme Q10 supplement for energy and heart health.</p>
                         <div class="product-meta">
                             <span class="product-dosage">100mg</span>
@@ -403,11 +497,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/uphem.jpg" alt="Uphem">
+                        <a href="product-pages/uphem.html" class="product-link">
+                            <img src="assets/img/products/uphem.jpg" alt="Uphem">
+                        </a>
                         <span class="product-tag">General</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Uphem</h3>
+                        <a href="product-pages/uphem.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Uphem</h3>
+                        </a>
                         <p class="product-description">Iron supplement for anemia and iron deficiency.</p>
                         <div class="product-meta">
                             <span class="product-dosage">50mg</span>
@@ -418,11 +516,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/Vibenerve.png" alt="Vibenerve">
+                        <a href="product-pages/vibenerve.html" class="product-link">
+                            <img src="assets/img/products/Vibenerve.png" alt="Vibenerve">
+                        </a>
                         <span class="product-tag">General</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Vibenerve</h3>
+                        <a href="product-pages/vibenerve.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Vibenerve</h3>
+                        </a>
                         <p class="product-description">B-complex vitamins for nerve health and function.</p>
                         <div class="product-meta">
                             <span class="product-dosage">10 tablets</span>
@@ -433,11 +535,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/welfix-ova.png" alt="Welfix-Ova">
+                        <a href="product-pages/welfix-ova.html" class="product-link">
+                            <img src="assets/img/products/welfix-ova.png" alt="Welfix-Ova">
+                        </a>
                         <span class="product-tag gynaecology">Gynaecology</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Welfix-Ova</h3>
+                        <a href="product-pages/welfix-ova.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Welfix-Ova</h3>
+                        </a>
                         <p class="product-description">Supplement for ovarian health and fertility support.</p>
                         <div class="product-meta">
                             <span class="product-dosage">30 tablets</span>
@@ -448,11 +554,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/welfix-ut.jpg" alt="Welfix-UT">
+                        <a href="product-pages/welfix-ut.html" class="product-link">
+                            <img src="assets/img/products/welfix-ut.jpg" alt="Welfix-UT">
+                        </a>
                         <span class="product-tag antibiotics">Antibiotics</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Welfix-UT</h3>
+                        <a href="product-pages/welfix-ut.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Welfix-UT</h3>
+                        </a>
                         <p class="product-description">Treatment for urinary tract infections.</p>
                         <div class="product-meta">
                             <span class="product-dosage">200mg</span>
@@ -463,11 +573,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/welfipan-dsr.png" alt="Wellfipan-DSR">
+                        <a href="product-pages/welfipan-dsr.html" class="product-link">
+                            <img src="assets/img/products/welfipan-dsr.png" alt="Wellfipan-DSR">
+                        </a>
                         <span class="product-tag ppi">PPI</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Welfipan-DSR</h3>
+                        <a href="product-pages/welfipan-dsr.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Welfipan-DSR</h3>
+                        </a>
                         <p class="product-description">Treats Acidity, Nausea, Peptic Ulcer and Vomiting.</p>
                         <div class="product-meta">
                             <span class="product-dosage">40mg</span>
@@ -478,11 +592,15 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/Xitcid.png" alt="Xitcid">
+                        <a href="product-pages/xitcid.html" class="product-link">
+                            <img src="assets/img/products/Xitcid.png" alt="Xitcid">
+                        </a>
                         <span class="product-tag ppi">PPI</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Xitcid</h3>
+                        <a href="product-pages/xitcid.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Xitcid</h3>
+                        </a>
                         <p class="product-description">Treatment for excessive stomach acid production.</p>
                         <div class="product-meta">
                             <span class="product-dosage">20mg</span>
@@ -493,15 +611,59 @@
 
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="assets/img/products/Xitmox-LB625.png" alt="Xitmox-LB625">
+                        <a href="product-pages/xitmox-lb625.html" class="product-link">
+                            <img src="assets/img/products/Xitmox-LB625.png" alt="Xitmox-LB625">
+                        </a>
                         <span class="product-tag antibiotics">Antibiotics</span>
                     </div>
                     <div class="product-info">
-                        <h3 class="product-name">Xitmox-LB625</h3>
+                        <a href="product-pages/xitmox-lb625.html" class="product-link" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Xitmox-LB625</h3>
+                        </a>
                         <p class="product-description">Advanced probiotic blend with lactobacillus.</p>
                         <div class="product-meta">
                             <span class="product-dosage">15 capsules</span>
                             <span class="product-price">₹166.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Product: Pronix-20 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <a href="product-pages/pronix-20.html">
+                            <img src="assets/img/products/pronix-20.jpeg" alt="Pronix-20 Capsule">
+                        </a>
+                        <span class="product-tag">General</span>
+                    </div>
+                    <div class="product-info">
+                        <a href="product-pages/pronix-20.html" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Pronix-20 Capsule</h3>
+                        </a>
+                        <p class="product-description">Advanced formula for digestive health and wellness.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">20mg</span>
+                            <span class="product-price">₹425.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- New Product: Enzonix -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <a href="product-pages/enzonix.html">
+                            <img src="assets/img/products/enzonix.jpeg" alt="Enzonix Tablet">
+                        </a>
+                        <span class="product-tag">General</span>
+                    </div>
+                    <div class="product-info">
+                        <a href="product-pages/enzonix.html" style="text-decoration: none; color: inherit;">
+                            <h3 class="product-name">Enzonix Tablet</h3>
+                        </a>
+                        <p class="product-description">Powerful multi-enzyme supplement for improved digestion.</p>
+                        <div class="product-meta">
+                            <span class="product-dosage">10 tablets</span>
+                            <span class="product-price">₹225.00</span>
                         </div>
                     </div>
                 </div>

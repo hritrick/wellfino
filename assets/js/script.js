@@ -33,8 +33,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     navbar.classList.add('active');
                     
                     // Smooth icon transition
-                    this.style.transition = 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+                    this.style.transition = 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease';
                     this.style.transform = 'rotate(90deg)';
+                    this.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
                     
                     // Wait for transform transition before changing the icon
                     setTimeout(() => {
@@ -48,8 +49,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 navbar.classList.remove('active');
                 
                 // Smooth icon transition
-                this.style.transition = 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
+                this.style.transition = 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease';
                 this.style.transform = 'rotate(-90deg)';
+                this.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
                 
                 // Wait for transform transition before changing the icon
                 setTimeout(() => {
@@ -67,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 isMenuOpen = false;
                 navbar.classList.remove('active');
                 mobileMenuBtn.innerHTML = '<i class="ri-menu-line"></i>';
+                mobileMenuBtn.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
                 document.body.style.overflow = '';
             }
         });
@@ -79,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     isMenuOpen = false;
                     navbar.classList.remove('active');
                     mobileMenuBtn.innerHTML = '<i class="ri-menu-line"></i>';
+                    mobileMenuBtn.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
                     document.body.style.overflow = '';
                 }
             });

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize elements
-    const filterButtons = document.querySelectorAll('.filter-btn');
+    const filterSelect = document.getElementById('filter-products');
     const productCards = document.querySelectorAll('.product-card');
     const productsGrid = document.querySelector('.products-grid');
     const sortSelect = document.getElementById('sort-products');
@@ -14,12 +14,31 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set animation order for initial products
     function setAnimationOrder() {
         productCards.forEach((card, index) => {
-            card.style.setProperty('--animation-order', index % 6 + 1);
+            card.style.setProperty('--animation-order', index % 8 + 1); // Increased to 8 for more variation
         });
     }
     
     // Initialize animation order
     setAnimationOrder();
+    
+    // Initialize product card links
+    function initProductLinks() {
+        // Prevent default click behavior on entire card to avoid interfering with links
+        productCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Only handle click if not clicking on a link
+                if (!e.target.closest('a')) {
+                    const productLink = card.querySelector('.product-info a');
+                    if (productLink) {
+                        window.location.href = productLink.getAttribute('href');
+                    }
+                }
+            });
+        });
+    }
+    
+    // Initialize product links
+    initProductLinks();
     
     // Handle scroll events for header styling with improved smoothness
     function handleScroll() {
@@ -59,106 +78,98 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize on page load
     handleScroll();
     
-    // Filter products with animation
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const filter = this.dataset.filter;
-            
-            // Update active button with smooth transition
-            filterButtons.forEach(btn => {
-                btn.classList.remove('active');
-                btn.style.transform = 'scale(1)';
-            });
-            
-            this.classList.add('active');
-            this.style.transform = 'scale(1.05)';
-            setTimeout(() => {
-                this.style.transform = 'scale(1)';
-            }, 300);
-            
-            // Add fade out animation to products grid
-            productsGrid.style.opacity = '0';
-            
-            setTimeout(() => {
-                // Filter products
-                let visibleCount = 0;
-                productCards.forEach(card => {
-                    if (filter === 'all') {
+    // Filter products with animation using dropdown
+    filterSelect.addEventListener('change', function() {
+        const filter = this.value;
+        
+        // Add subtle animation to the select
+        this.style.transform = 'scale(1.05)';
+        setTimeout(() => {
+            this.style.transform = 'scale(1)';
+        }, 300);
+        
+        // Add fade out animation to products grid
+        productsGrid.style.opacity = '0';
+        
+        setTimeout(() => {
+            // Filter products
+            let visibleCount = 0;
+            productCards.forEach(card => {
+                if (filter === 'all') {
+                    card.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    const tagElement = card.querySelector('.product-tag');
+                    const tagText = tagElement ? tagElement.textContent.toLowerCase() : '';
+                    const tagClass = tagElement ? tagElement.className.toLowerCase() : '';
+                    
+                    if ((filter === 'general' && tagText === 'general') || 
+                        (filter === 'gynaecology' && (tagText === 'gynaecology' || tagClass.includes('gynaecology'))) || 
+                        (filter === 'orthopedic' && (tagText === 'orthopedic' || tagClass.includes('orthopedic'))) ||
+                        (filter === 'dermatology' && (tagText === 'dermatology' || tagClass.includes('dermatology'))) ||
+                        (filter === 'antibiotics' && (tagText === 'antibiotics' || tagClass.includes('antibiotics'))) ||
+                        (filter === 'ppi' && (tagText === 'ppi' || tagClass.includes('ppi')))) {
                         card.style.display = 'block';
                         visibleCount++;
                     } else {
-                        const tagElement = card.querySelector('.product-tag');
-                        const tagText = tagElement ? tagElement.textContent.toLowerCase() : '';
-                        const tagClass = tagElement ? tagElement.className.toLowerCase() : '';
-                        
-                        if ((filter === 'general' && tagText === 'general') || 
-                            (filter === 'gynaecology' && (tagText === 'gynaecology' || tagClass.includes('gynaecology'))) || 
-                            (filter === 'orthopedic' && (tagText === 'orthopedic' || tagClass.includes('orthopedic'))) ||
-                            (filter === 'dermatology' && (tagText === 'dermatology' || tagClass.includes('dermatology'))) ||
-                            (filter === 'antibiotics' && (tagText === 'antibiotics' || tagClass.includes('antibiotics'))) ||
-                            (filter === 'ppi' && (tagText === 'ppi' || tagClass.includes('ppi')))) {
-                            card.style.display = 'block';
-                            visibleCount++;
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    }
-                });
-                
-                // Reset animation order for visible cards
-                let order = 1;
-                productCards.forEach(card => {
-                    if (card.style.display !== 'none') {
-                        card.style.setProperty('--animation-order', order % 6);
-                        card.style.opacity = '0';
-                        card.style.transform = 'translateY(30px)';
-                        order++;
-                    }
-                });
-                
-                // Fade in the grid
-                productsGrid.style.opacity = '1';
-                
-                // Animate visible cards with staggered delay
-                setTimeout(() => {
-                    let delay = 0;
-                    productCards.forEach(card => {
-                        if (card.style.display !== 'none') {
-                            setTimeout(() => {
-                                card.style.opacity = '1';
-                                card.style.transform = 'translateY(0)';
-                                card.style.transition = 'opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-                            }, delay);
-                            delay += 50;
-                        }
-                    });
-                }, 100);
-                
-                // Show message if no products found
-                if (visibleCount === 0 && filter !== 'all') {
-                    const noProductsMsg = document.createElement('div');
-                    noProductsMsg.className = 'no-products-message';
-                    noProductsMsg.innerHTML = `<p>No products found in the "${filter}" category. <button class="reset-filter">View all products</button></p>`;
-                    productsGrid.appendChild(noProductsMsg);
-                    
-                    // Add event listener to reset button
-                    const resetBtn = noProductsMsg.querySelector('.reset-filter');
-                    resetBtn.addEventListener('click', function() {
-                        // Find and click the "all" filter button
-                        const allFilterBtn = document.querySelector('.filter-btn[data-filter="all"]');
-                        if (allFilterBtn) {
-                            allFilterBtn.click();
-                        }
-                    });
-                } else {
-                    // Remove any existing "no products" message
-                    const existingMsg = productsGrid.querySelector('.no-products-message');
-                    if (existingMsg) {
-                        existingMsg.remove();
+                        card.style.display = 'none';
                     }
                 }
-            }, 300); // Delay to allow fade out animation
-        });
+            });
+            
+            // Reset animation order for visible cards
+            let order = 1;
+            productCards.forEach(card => {
+                if (card.style.display !== 'none') {
+                    card.style.setProperty('--animation-order', order % 8); // Increased to 8
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    order++;
+                }
+            });
+            
+            // Fade in the grid
+            productsGrid.style.opacity = '1';
+            
+            // Animate visible cards with staggered delay
+            setTimeout(() => {
+                let delay = 0;
+                productCards.forEach(card => {
+                    if (card.style.display !== 'none') {
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                            card.style.transition = 'opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+                        }, delay);
+                        delay += 50;
+                    }
+                });
+            }, 100);
+            
+            // Show message if no products found
+            if (visibleCount === 0 && filter !== 'all') {
+                const noProductsMsg = document.createElement('div');
+                noProductsMsg.className = 'no-products-message';
+                noProductsMsg.innerHTML = `<p>No products found in the "${filter}" category. <button class="reset-filter">View all products</button></p>`;
+                productsGrid.appendChild(noProductsMsg);
+                
+                // Add event listener to reset button
+                const resetBtn = noProductsMsg.querySelector('.reset-filter');
+                resetBtn.addEventListener('click', function() {
+                    // Set the filter dropdown back to "all"
+                    filterSelect.value = 'all';
+                    // Trigger the change event
+                    const event = new Event('change');
+                    filterSelect.dispatchEvent(event);
+                });
+            } else {
+                // Remove any existing "no products" message
+                const existingMsg = productsGrid.querySelector('.no-products-message');
+                if (existingMsg) {
+                    existingMsg.remove();
+                }
+            }
+        }, 300); // Delay to allow fade out animation
     });
     
     // Sort products with animation
@@ -196,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Apply visual effects during sorting
             products.forEach((product, index) => {
                 // Add staggered animation delay
-                product.style.setProperty('--animation-order', index % 6 + 1);
+                product.style.setProperty('--animation-order', index % 8 + 1); // Increased to 8
                 
                 // Reset opacity and transform for animation
                 product.style.opacity = '0';
