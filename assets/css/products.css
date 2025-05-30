@@ -378,7 +378,7 @@ main {
     gap: 10px;
 }
 
-.product-dosage {
+.product-type {
     font-size: 0.9rem;
     color: #666;
     background: rgba(0, 0, 0, 0.03);
@@ -678,7 +678,7 @@ footer {
         gap: 6px;
     }
     
-    .product-dosage {
+    .product-type {
         display: none;
     }
     
@@ -900,7 +900,7 @@ footer {
         justify-content: flex-end;
     }
     
-    .product-dosage {
+    .product-type {
         display: none;
     }
     
