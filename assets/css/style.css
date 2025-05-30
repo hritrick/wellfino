@@ -554,7 +554,7 @@ header.scrolled nav {
 }
 
 .features-section {
-    padding: 60px 20px;
+    padding: 20px;
 }
 .features-grid {
     display: grid;
@@ -2027,7 +2027,7 @@ nav.scrolled .logo-link img {
 }
 
 .about-section {
-    padding: 2rem 1rem 6rem;
+    padding: 2rem 0.5rem 2rem;
     background: linear-gradient(to bottom, #ffffff, #f8f9fa);
 }
 
