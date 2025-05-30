@@ -790,7 +790,7 @@ footer {
     text-decoration: none;
     transition: all 0.3s ease;
     line-height: 1.6;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
 }
 
 .contact-item a {
@@ -1753,6 +1753,30 @@ footer {
         width: 115%;
         display: block;
     }
+    
+    /* Hide "View Range" buttons on mobile but keep "Explore All" */
+    .category-card:not(.featured) .explore-btn {
+        display: none;
+    }
+    
+    /* Keep the "Explore All" button visible on the featured card */
+    .category-card.featured .explore-btn {
+        display: inline-flex;
+    }
+    
+    /* Adjust padding when buttons are hidden */
+    .category-card:not(.featured) .category-content {
+        padding-bottom: 15px;
+    }
+    
+    /* Make category title and description more prominent */
+    .category-card:not(.featured) .category-content h3 {
+        margin-bottom: 5px;
+    }
+    
+    .category-card:not(.featured) .category-content p {
+        margin-bottom: 0;
+    }
 }
 
 @media (max-width: 480px) {
@@ -2190,6 +2214,7 @@ nav.scrolled .logo-link img {
     
     .about-text {
         gap: 1rem;
+        text-align: -webkit-center;
     }
     
     .stat-number {
