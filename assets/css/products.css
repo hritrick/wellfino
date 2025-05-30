@@ -673,15 +673,18 @@ footer {
     
     .product-meta {
         flex-direction: row;
+        justify-content: flex-end;
+        width: 100%;
         gap: 6px;
     }
     
     .product-dosage {
-        font-size: 0.75rem;
+        display: none;
     }
     
     .product-price {
-        font-size: 0.95rem;
+        font-size: 1rem;
+        font-weight: 600;
     }
     
     /* Mobile navbar styles */
@@ -821,6 +824,7 @@ footer {
     
     .product-price {
         font-size: 1rem;
+        font-weight: 600;
     }
     
     .product-tag {
@@ -890,6 +894,19 @@ footer {
     /* Smoother animations on mobile */
     .product-card:hover {
         transform: translateY(-5px);
+    }
+    
+    .product-meta {
+        justify-content: flex-end;
+    }
+    
+    .product-dosage {
+        display: none;
+    }
+    
+    .product-price {
+        font-size: 1rem;
+        font-weight: 600;
     }
 }
 
