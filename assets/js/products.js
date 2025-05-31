@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
                 break;
             case 'whatsapp':
-                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
+                window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
                 break;
             case 'copy':
                 navigator.clipboard.writeText(url).then(() => {
@@ -653,6 +653,95 @@ document.addEventListener('DOMContentLoaded', function() {
             productDetailInfo.appendChild(productDescription);
             productDetailTop.appendChild(productDetailInfo);
         }
+        
+        // Add Buy Now and Add to Cart buttons
+        addProductActionButtons();
+    }
+    
+    // Add Buy Now and Add to Cart buttons
+    function addProductActionButtons() {
+        // Check if we're on a product detail page
+        const productDetailContent = document.querySelector('.product-detail-content');
+        if (!productDetailContent) return;
+        
+        // Check if buttons already exist
+        if (productDetailContent.querySelector('.product-actions')) return;
+        
+        // Find the price element
+        const priceElement = productDetailContent.querySelector('.product-detail-price');
+        if (!priceElement) return;
+        
+        // Create action buttons container
+        const actionsContainer = document.createElement('div');
+        actionsContainer.className = 'product-actions';
+        
+        // Create Buy Now button
+        const buyNowButton = document.createElement('button');
+        buyNowButton.className = 'product-action-btn btn-buy-now';
+        buyNowButton.innerHTML = '<i class="ri-shopping-bag-3-line"></i> Buy Now';
+        
+        // Create Add to Cart button
+        const addCartButton = document.createElement('button');
+        addCartButton.className = 'product-action-btn btn-add-cart';
+        addCartButton.innerHTML = '<i class="ri-shopping-cart-line"></i> Add to Cart';
+        
+        // Add buttons to container
+        actionsContainer.appendChild(buyNowButton);
+        actionsContainer.appendChild(addCartButton);
+        
+        // Insert container after price element
+        priceElement.insertAdjacentElement('afterend', actionsContainer);
+        
+        // Add event listeners
+        buyNowButton.addEventListener('click', handleBuyNow);
+        addCartButton.addEventListener('click', handleAddToCart);
+    }
+    
+    // Handle Buy Now button click
+    function handleBuyNow() {
+        // Get product details
+        const productTitle = document.querySelector('.product-detail-title').textContent;
+        const productPrice = document.querySelector('.product-detail-price').textContent;
+        
+        // Show confirmation with vibration feedback on mobile
+        if (navigator.vibrate) {
+            navigator.vibrate(50);
+        }
+        
+        // In a real implementation, this would redirect to checkout
+        // For now, show an alert
+        alert(`Buying now: ${productTitle} for ${productPrice}`);
+        
+        // You would typically redirect to checkout here
+        // window.location.href = '/checkout.html?product=' + encodeURIComponent(productTitle);
+    }
+    
+    // Handle Add to Cart button click
+    function handleAddToCart() {
+        // Get the button
+        const button = this;
+        
+        // Get product details
+        const productTitle = document.querySelector('.product-detail-title').textContent;
+        
+        // Add vibration feedback on mobile
+        if (navigator.vibrate) {
+            navigator.vibrate([30, 50, 30]);
+        }
+        
+        // Visual feedback - change button appearance
+        button.classList.add('added');
+        button.innerHTML = '<i class="ri-check-line"></i> Added to Cart';
+        
+        // In a real implementation, this would add the item to cart
+        // For demonstration, revert button after delay
+        setTimeout(() => {
+            button.classList.remove('added');
+            button.innerHTML = '<i class="ri-shopping-cart-line"></i> Add to Cart';
+        }, 2000);
+        
+        // You would typically update cart count and store in localStorage here
+        // updateCartCount(1);
     }
     
     // Call the function to apply the new layout

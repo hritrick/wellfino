@@ -134,7 +134,7 @@
             <a href="https://twitter.com/intent/tweet?text=Check out enzonix from Wellfino Pharmaceutical&amp;url=PLACEHOLDER_URL" target="_blank" class="share-icon x" title="Twitter">
                 <i class="ri-twitter-x-fill"></i>
             </a>
-            <a href="https://api.whatsapp.com/send?text=Check out enzonix from Wellfino Pharmaceutical: PLACEHOLDER_URL" target="_blank" class="share-icon whatsapp" title="WhatsApp">
+            <a href="https://wa.me/?text=Check out enzonix from Wellfino Pharmaceutical: PLACEHOLDER_URL" target="_blank" class="share-icon whatsapp" title="WhatsApp">
                 <i class="ri-whatsapp-fill"></i>
             </a>
             <button class="share-icon copy" title="Copy">
@@ -145,6 +145,15 @@
             </div>
                     <div class="product-detail-price">₹225.00</div>
                     
+                    <div class="product-actions">
+                        <button class="product-action-btn btn-buy-now">
+                            <i class="ri-shopping-bag-3-line"></i> Buy Now
+                        </button>
+                        <button class="product-action-btn btn-add-cart">
+                            <i class="ri-shopping-cart-line"></i> Add to Cart
+                        </button>
+                    </div>
+                    
                     <div class="product-detail-share">
         <span class="share-text">Share this product:</span>
         <div class="share-icons">
@@ -154,7 +163,7 @@
             <a href="https://twitter.com/intent/tweet?text=Check out enzonix from Wellfino Pharmaceutical&amp;url=PLACEHOLDER_URL" target="_blank" class="share-icon x" title="Twitter">
                 <i class="ri-twitter-x-fill"></i>
             </a>
-            <a href="https://api.whatsapp.com/send?text=Check out enzonix from Wellfino Pharmaceutical: PLACEHOLDER_URL" target="_blank" class="share-icon whatsapp" title="WhatsApp">
+            <a href="https://wa.me/?text=Check out enzonix from Wellfino Pharmaceutical: PLACEHOLDER_URL" target="_blank" class="share-icon whatsapp" title="WhatsApp">
                 <i class="ri-whatsapp-fill"></i>
             </a>
             <button class="share-icon copy" title="Copy">
@@ -202,7 +211,7 @@
             // Update WhatsApp share link
             const whatsappShareLink = document.querySelector('.share-icon.whatsapp');
             if (whatsappShareLink) {
-                whatsappShareLink.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ': ' + currentUrl)}`;
+                whatsappShareLink.href = `https://wa.me/?text=${encodeURIComponent(shareText + ': ' + currentUrl)}`;
             }
             
             // Initialize product detail share functionality
