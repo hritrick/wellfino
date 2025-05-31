@@ -126,15 +126,18 @@ document.addEventListener('DOMContentLoaded', function() {
     function shareProduct(type, title, url) {
         const text = `Check out ${title} from Wellfino Pharmaceutical`;
         
+        // Fix URL path if needed
+        const fixedUrl = url.replace('/products/product-pages/', '/product-pages/');
+        
         switch(type) {
             case 'facebook':
-                window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+                window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fixedUrl)}`, '_blank');
                 break;
             case 'twitter':
-                window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+                window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fixedUrl)}`, '_blank');
                 break;
             case 'whatsapp':
-                window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
+                window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + fixedUrl)}`, '_blank');
                 break;
             case 'copy':
                 navigator.clipboard.writeText(url).then(() => {
@@ -215,7 +218,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     icon.addEventListener('click', function(e) {
                         e.preventDefault();
-                        navigator.clipboard.writeText(window.location.href).then(() => {
+                        // Fix URL path if needed
+                        const fixedUrl = window.location.href.replace('/products/product-pages/', '/product-pages/');
+                        navigator.clipboard.writeText(fixedUrl).then(() => {
                             // Visual feedback for copy success
                             this.classList.add('copied');
                             this.style.background = '#28a745';

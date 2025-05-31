@@ -131,7 +131,7 @@
             <a href="https://www.facebook.com/sharer/sharer.php?u=PLACEHOLDER_URL" target="_blank" class="share-icon facebook" title="Facebook">
                 <i class="ri-facebook-fill"></i>
             </a>
-            <a href="https://twitter.com/intent/tweet?text=Check out niqcee-z from Wellfino Pharmaceutical&amp;url=PLACEHOLDER_URL" target="_blank" class="share-icon x" title="Twitter">
+            <a href="https://twitter.com/intent/tweet?text=PLACEHOLDER_TEXT" target="_blank" class="share-icon x" title="X (Twitter)">
                 <i class="ri-twitter-x-fill"></i>
             </a>
             <a href="https://wa.me/?text=Check out niqcee-z from Wellfino Pharmaceutical: PLACEHOLDER_URL" target="_blank" class="share-icon whatsapp" title="WhatsApp">
@@ -160,7 +160,7 @@
             <a href="https://www.facebook.com/sharer/sharer.php?u=PLACEHOLDER_URL" target="_blank" class="share-icon facebook" title="Facebook">
                 <i class="ri-facebook-fill"></i>
             </a>
-            <a href="https://twitter.com/intent/tweet?text=Check out niqcee-z from Wellfino Pharmaceutical&amp;url=PLACEHOLDER_URL" target="_blank" class="share-icon x" title="Twitter">
+            <a href="https://twitter.com/intent/tweet?text=PLACEHOLDER_TEXT" target="_blank" class="share-icon x" title="X (Twitter)">
                 <i class="ri-twitter-x-fill"></i>
             </a>
             <a href="https://wa.me/?text=Check out niqcee-z from Wellfino Pharmaceutical: PLACEHOLDER_URL" target="_blank" class="share-icon whatsapp" title="WhatsApp">
@@ -192,7 +192,7 @@
     <script>
         // Update share URLs with actual page URL
         document.addEventListener('DOMContentLoaded', function() {
-            const currentUrl = window.location.href;
+            const currentUrl = window.location.href.replace('/products/product-pages/', '/product-pages/');
             const productName = document.querySelector('.product-detail-title').textContent;
             const shareText = `Check out ${productName} from Wellfino Pharmaceutical`;
             
