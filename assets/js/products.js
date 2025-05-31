@@ -611,4 +611,50 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
+
+    // Apply new product detail layout if on a product detail page
+    function applyProductDetailLayout() {
+        // Check if we're on a product detail page
+        const productDetailContainer = document.querySelector('.product-detail');
+        if (!productDetailContainer) return;
+        
+        // Check if the new layout is already applied
+        if (document.querySelector('.product-detail-essentials')) return;
+        
+        // Get the necessary elements
+        const productImage = productDetailContainer.querySelector('.product-detail-image');
+        const productContent = productDetailContainer.querySelector('.product-detail-content');
+        const productDescription = productContent.querySelector('.product-detail-description');
+        const productMeta = productContent.querySelector('.product-detail-meta');
+        
+        // Create new container structure
+        const productDetailTop = document.createElement('div');
+        productDetailTop.className = 'product-detail-top';
+        
+        // Create essentials container for image and basic info
+        const productDetailEssentials = document.createElement('div');
+        productDetailEssentials.className = 'product-detail-essentials';
+        
+        // Create product info container for full-width description
+        const productDetailInfo = document.createElement('div');
+        productDetailInfo.className = 'product-detail-info';
+        
+        // Set up the structure
+        productDetailContainer.insertBefore(productDetailTop, productImage);
+        productDetailTop.appendChild(productDetailEssentials);
+        
+        // Move image and content to essentials section
+        productDetailEssentials.appendChild(productImage);
+        productDetailEssentials.appendChild(productContent);
+        
+        // Move product description to info section (full width)
+        if (productDescription && productMeta) {
+            productContent.insertBefore(productMeta, productDescription);
+            productDetailInfo.appendChild(productDescription);
+            productDetailTop.appendChild(productDetailInfo);
+        }
+    }
+    
+    // Call the function to apply the new layout
+    applyProductDetailLayout();
 }); 
