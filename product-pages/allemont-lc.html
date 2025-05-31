@@ -122,9 +122,48 @@
                 </div>
                 <div class="product-detail-content">
                     <span class="product-detail-tag">General</span>
-                    <h1 class="product-detail-title">Allemont-LC</h1>
+                    <div class="product-title-container">
+                <h1 class="product-detail-title">Allemont-LC</h1>
+                <button class="mobile-share-button">
+                    <i class="ri-share-line"></i>
+                </button>
+                <div class="mobile-share-dropdown">
+                    <span class="share-text">Share this product:</span>
+                    <div class="share-icons">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=PLACEHOLDER_URL" target="_blank" class="share-icon facebook" title="Facebook">
+                <i class="ri-facebook-fill"></i>
+            </a>
+            <a href="https://twitter.com/intent/tweet?text=Check out allemont-lc from Wellfino Pharmaceutical&url=PLACEHOLDER_URL" target="_blank" class="share-icon x" title="Twitter">
+                <i class="ri-twitter-x-fill"></i>
+            </a>
+            <a href="https://api.whatsapp.com/send?text=Check out allemont-lc from Wellfino Pharmaceutical: PLACEHOLDER_URL" target="_blank" class="share-icon whatsapp" title="WhatsApp">
+                <i class="ri-whatsapp-fill"></i>
+            </a>
+            <button class="share-icon copy" title="Copy">
+                <i class="ri-link"></i>
+            </button>
+        </div>
+                </div>
+            </div>
                     <div class="product-detail-price">₹130.00</div>
                     
+                    <div class="product-detail-share">
+        <span class="share-text">Share this product:</span>
+        <div class="share-icons">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=PLACEHOLDER_URL" target="_blank" class="share-icon facebook" title="Facebook">
+                <i class="ri-facebook-fill"></i>
+            </a>
+            <a href="https://twitter.com/intent/tweet?text=Check out allemont-lc from Wellfino Pharmaceutical&url=PLACEHOLDER_URL" target="_blank" class="share-icon x" title="Twitter">
+                <i class="ri-twitter-x-fill"></i>
+            </a>
+            <a href="https://api.whatsapp.com/send?text=Check out allemont-lc from Wellfino Pharmaceutical: PLACEHOLDER_URL" target="_blank" class="share-icon whatsapp" title="WhatsApp">
+                <i class="ri-whatsapp-fill"></i>
+            </a>
+            <button class="share-icon copy" title="Copy">
+                <i class="ri-link"></i>
+            </button>
+        </div>
+    </div>                    
                     <div class="product-detail-description">
                         <h3>Product Description</h3>
                         <p>ALLEMONT-LC contains Montelukast (10 mg) and Levocetirizine (5 mg) for effective treatment of seasonal allergies, asthma, and COPD. It offers fast action, leukotriene blockage, and improved breathing.</p>
@@ -136,7 +175,55 @@
                             <span class="product-detail-meta-label">Pack Size</span>
                             <span class="product-detail-meta-value">10 tablets</span>
                         </div>
-                    </div>
                 </div>
-            </div>
+                </div>
+                
         </div>
+    </div>
+    </main>
+
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/products.js"></script>
+    <script>
+        // Update share URLs with actual page URL
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUrl = window.location.href;
+            const productName = document.querySelector('.product-detail-title').textContent;
+            const shareText = `Check out ${productName} from Wellfino Pharmaceutical`;
+            
+            // Update Facebook share link
+            const fbShareLink = document.querySelector('.share-icon.facebook');
+            if (fbShareLink) {
+                fbShareLink.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+            }
+            
+            // Update X (Twitter) share link
+            const xShareLink = document.querySelector('.share-icon.x');
+            if (xShareLink) {
+                xShareLink.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(currentUrl)}`;
+            }
+            
+            // Update WhatsApp share link
+            const whatsappShareLink = document.querySelector('.share-icon.whatsapp');
+            if (whatsappShareLink) {
+                whatsappShareLink.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ': ' + currentUrl)}`;
+            }
+            
+            // Initialize product detail share functionality
+            initProductDetailShare();
+            
+            // Add touch feedback for mobile devices
+            const shareIcons = document.querySelectorAll('.share-icon:not(.copy)');
+            shareIcons.forEach(icon => {
+                icon.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.95)';
+                });
+                
+                icon.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

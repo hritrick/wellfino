@@ -122,21 +122,109 @@
                 </div>
                 <div class="product-detail-content">
                     <span class="product-detail-tag">Dermatology</span>
-                    <h1 class="product-detail-title">U4Glow Facewash</h1>
+                    <div class="product-title-container">
+                <h1 class="product-detail-title">U4Glow</h1>
+                <button class="mobile-share-button">
+                    <i class="ri-share-line"></i>
+                </button>
+                <div class="mobile-share-dropdown">
+                    <span class="share-text">Share this product:</span>
+                    <div class="share-icons">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=PLACEHOLDER_URL" target="_blank" class="share-icon facebook" title="Facebook">
+                <i class="ri-facebook-fill"></i>
+            </a>
+            <a href="https://twitter.com/intent/tweet?text=Check out u4glow-facewash from Wellfino Pharmaceutical&url=PLACEHOLDER_URL" target="_blank" class="share-icon x" title="Twitter">
+                <i class="ri-twitter-x-fill"></i>
+            </a>
+            <a href="https://api.whatsapp.com/send?text=Check out u4glow-facewash from Wellfino Pharmaceutical: PLACEHOLDER_URL" target="_blank" class="share-icon whatsapp" title="WhatsApp">
+                <i class="ri-whatsapp-fill"></i>
+            </a>
+            <button class="share-icon copy" title="Copy">
+                <i class="ri-link"></i>
+            </button>
+        </div>
+                </div>
+            </div>
                     <div class="product-detail-price">₹299.00</div>
+                    
+                    <div class="product-detail-share">
+                        <span class="share-text">Share this product:</span>
+                        <div class="share-icons">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=PLACEHOLDER_URL" target="_blank" class="share-icon facebook" title="Facebook">
+                <i class="ri-facebook-fill"></i>
+            </a>
+            <a href="https://twitter.com/intent/tweet?text=Check out u4glow-facewash from Wellfino Pharmaceutical&url=PLACEHOLDER_URL" target="_blank" class="share-icon x" title="Twitter">
+                <i class="ri-twitter-x-fill"></i>
+            </a>
+            <a href="https://api.whatsapp.com/send?text=Check out u4glow-facewash from Wellfino Pharmaceutical: PLACEHOLDER_URL" target="_blank" class="share-icon whatsapp" title="WhatsApp">
+                <i class="ri-whatsapp-fill"></i>
+            </a>
+            <button class="share-icon copy" title="Copy">
+                <i class="ri-link"></i>
+            </button>
+        </div>
+                    </div>
                     
                     <div class="product-detail-description">
                         <h3>Product Description</h3>
-                        <p>U4GLOW Face Wash is a premium face wash enriched with kojic acid, glycolic acid, glutathione, vitamins C and E, aloe vera extract, and various fruit extracts.</p>
-                        <p>This advanced formulation aims to nourish the skin, promote whitening and lightening, and address issues like acne and pigmentation. Regular use helps reveal clearer, more luminous skin with improved texture and a healthy glow, making it an excellent choice for those seeking a more radiant complexion.</p>
+                        <p>U4GLOW Face Wash contains an advanced formula with Kojic Acid, Glutathione, and Vitamins C & E, working together to brighten, rejuvenate, and nourish your skin.</p>
+                        <p>This gentle yet effective face wash removes impurities, reduces hyperpigmentation, and evens skin tone. Perfect for daily use, it helps fade dark spots and protects against environmental damage while promoting a healthy, radiant complexion.</p>
                     </div>
                     
                     <div class="product-detail-meta">
                         <div class="product-detail-meta-item">
-                            <span class="product-detail-meta-label">Pack Size</span>
-                            <span class="product-detail-meta-value">60ml</span>
+                            <span class="product-detail-meta-label">Size</span>
+                            <span class="product-detail-meta-value">100ml</span>
                         </div>
-                    </div>
                 </div>
-            </div>
+                </div>
+                
         </div>
+    </div>
+    </main>
+
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/products.js"></script>
+    <script>
+        // Update share URLs with actual page URL
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUrl = window.location.href;
+            const productName = document.querySelector('.product-detail-title').textContent;
+            const shareText = `Check out ${productName} from Wellfino Pharmaceutical`;
+            
+            // Update Facebook share link
+            const fbShareLink = document.querySelector('.share-icon.facebook');
+            if (fbShareLink) {
+                fbShareLink.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+            }
+            
+            // Update X (Twitter) share link
+            const xShareLink = document.querySelector('.share-icon.x');
+            if (xShareLink) {
+                xShareLink.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(currentUrl)}`;
+            }
+            
+            // Update WhatsApp share link
+            const whatsappShareLink = document.querySelector('.share-icon.whatsapp');
+            if (whatsappShareLink) {
+                whatsappShareLink.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareText + ': ' + currentUrl)}`;
+            }
+            
+            // Initialize product detail share functionality
+            initProductDetailShare();
+            
+            // Add touch feedback for mobile devices
+            const shareIcons = document.querySelectorAll('.share-icon:not(.copy)');
+            shareIcons.forEach(icon => {
+                icon.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.95)';
+                });
+                
+                icon.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

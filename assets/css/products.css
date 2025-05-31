@@ -345,6 +345,190 @@ main {
     opacity: 1;
 }
 
+/* Share tooltip */
+.share-button {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 10;
+    border: none;
+}
+
+.product-card:hover .share-button {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.share-button i {
+    font-size: 1.2rem;
+    color: #007bff;
+    transition: transform 0.3s ease;
+}
+
+.share-button:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
+}
+
+.share-button:hover i {
+    transform: rotate(10deg);
+}
+
+.share-button:active {
+    transform: scale(0.95);
+}
+
+.share-tooltip {
+    position: absolute;
+    bottom: 60px;
+    right: 15px;
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 20;
+    width: 160px;
+}
+
+.share-tooltip.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.share-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.share-option:hover {
+    background: rgba(0, 123, 255, 0.1);
+}
+
+.share-option i {
+    font-size: 1.1rem;
+}
+
+.share-option[data-type="facebook"] i {
+    color: #1877f2;
+}
+
+.share-option[data-type="twitter"] i {
+    color: #000000;
+}
+
+.share-option[data-type="whatsapp"] i {
+    color: #25d366;
+}
+
+.share-option[data-type="copy"] i {
+    color: #666;
+}
+
+.share-option span {
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Media queries for share tooltip */
+@media (max-width: 768px) {
+    .share-button {
+        width: 36px;
+        height: 36px;
+        bottom: 12px;
+        right: 12px;
+    }
+    
+    .share-button i {
+        font-size: 1.1rem;
+    }
+    
+    .share-tooltip {
+        width: 150px;
+        bottom: 55px;
+        right: 12px;
+    }
+    
+    .share-option {
+        padding: 8px;
+    }
+    
+    .share-option i {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .share-button {
+        width: 32px;
+        height: 32px;
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .share-button i {
+        font-size: 1rem;
+    }
+    
+    .share-tooltip {
+        width: 140px;
+        bottom: 48px;
+        right: 5px;
+        padding: 8px;
+    }
+    
+    .share-option {
+        padding: 7px;
+    }
+    
+    .share-option span {
+        font-size: 0.85rem;
+    }
+    
+    .share-option i {
+        font-size: 0.95rem;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+    .share-button {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .share-option {
+        padding: 12px 10px;
+    }
+}
+
 .product-info {
     padding: 25px;
 }
@@ -790,6 +974,17 @@ footer {
         padding: 10px 35px 10px 15px;
         background-position: right 10px center;
     }
+    
+    .share-button {
+        width: 36px;
+        height: 36px;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .share-button i {
+        font-size: 1rem;
+    }
 }
 
 /* Small mobile devices */
@@ -907,6 +1102,18 @@ footer {
     .product-price {
         font-size: 1rem;
         font-weight: 600;
+    }
+    
+    .share-button {
+        width: 32px;
+        height: 32px;
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .share-tooltip {
+        right: 10px;
+        bottom: 50px;
     }
 }
 

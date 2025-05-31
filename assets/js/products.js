@@ -26,8 +26,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Prevent default click behavior on entire card to avoid interfering with links
         productCards.forEach(card => {
             card.addEventListener('click', function(e) {
-                // Only handle click if not clicking on a link
-                if (!e.target.closest('a')) {
+                // Only handle click if not clicking on a link or share button
+                if (!e.target.closest('a') && !e.target.closest('.share-button') && !e.target.closest('.share-tooltip')) {
                     const productLink = card.querySelector('.product-info a');
                     if (productLink) {
                         window.location.href = productLink.getAttribute('href');
@@ -39,6 +39,258 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize product links
     initProductLinks();
+    
+    // Share functionality for product cards
+    function initShareButtons() {
+        const shareButtons = document.querySelectorAll('.share-button');
+        const shareTooltips = document.querySelectorAll('.share-tooltip');
+        
+        // Close all tooltips when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.share-button') && !e.target.closest('.share-tooltip')) {
+                shareTooltips.forEach(tooltip => {
+                    tooltip.classList.remove('active');
+                });
+            }
+        });
+        
+        // Close tooltips when scrolling (for better mobile experience)
+        window.addEventListener('scroll', function() {
+            shareTooltips.forEach(tooltip => {
+                tooltip.classList.remove('active');
+            });
+        }, { passive: true });
+        
+        // Close tooltips when resizing window
+        window.addEventListener('resize', function() {
+            shareTooltips.forEach(tooltip => {
+                tooltip.classList.remove('active');
+            });
+        }, { passive: true });
+        
+        // Toggle tooltip on share button click
+        shareButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const tooltip = this.nextElementSibling;
+                
+                // Close all other tooltips
+                shareTooltips.forEach(t => {
+                    if (t !== tooltip) {
+                        t.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current tooltip
+                tooltip.classList.toggle('active');
+                
+                // Position check for mobile - ensure tooltip stays in viewport
+                setTimeout(() => {
+                    const tooltipRect = tooltip.getBoundingClientRect();
+                    if (tooltipRect.right > window.innerWidth) {
+                        tooltip.style.right = '0';
+                        tooltip.style.left = 'auto';
+                    }
+                    if (tooltipRect.bottom > window.innerHeight) {
+                        tooltip.style.bottom = 'auto';
+                        tooltip.style.top = '-120px';
+                    }
+                }, 10);
+            });
+        });
+        
+        // Handle share options click
+        document.querySelectorAll('.share-option').forEach(option => {
+            option.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const type = this.getAttribute('data-type');
+                const card = this.closest('.product-card');
+                const productLink = card.querySelector('.product-info a').getAttribute('href');
+                const productName = card.querySelector('.product-name').textContent;
+                const productUrl = window.location.origin + window.location.pathname.replace('products.html', '') + productLink;
+                
+                shareProduct(type, productName, productUrl);
+                
+                // Close tooltip after sharing
+                this.closest('.share-tooltip').classList.remove('active');
+            });
+        });
+    }
+    
+    // Initialize share buttons
+    if (document.querySelector('.share-button')) {
+        initShareButtons();
+    }
+    
+    // Share product function
+    function shareProduct(type, title, url) {
+        const text = `Check out ${title} from Wellfino Pharmaceutical`;
+        
+        switch(type) {
+            case 'facebook':
+                window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+                break;
+            case 'twitter':
+                window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+                break;
+            case 'whatsapp':
+                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + url)}`, '_blank');
+                break;
+            case 'copy':
+                navigator.clipboard.writeText(url).then(() => {
+                    // Show copy success feedback
+                    const copyOption = document.querySelector(`.share-option[data-type="copy"]`);
+                    const originalText = copyOption.querySelector('span').textContent;
+                    copyOption.querySelector('span').textContent = 'Copied!';
+                    copyOption.querySelector('i').className = 'ri-check-line';
+                    
+                    setTimeout(() => {
+                        copyOption.querySelector('span').textContent = originalText;
+                        copyOption.querySelector('i').className = 'ri-link';
+                    }, 2000);
+                });
+                break;
+        }
+    }
+    
+    // Handle share functionality on product detail page
+    function initProductDetailShare() {
+        const shareIcons = document.querySelectorAll('.product-detail-share .share-icon, .mobile-share-dropdown .share-icon');
+        const mobileShareBtn = document.querySelector('.mobile-share-button');
+        const mobileShareDropdown = document.querySelector('.mobile-share-dropdown');
+        
+        // Handle mobile share button click
+        if (mobileShareBtn && mobileShareDropdown) {
+            mobileShareBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileShareDropdown.classList.toggle('active');
+                
+                // Position the dropdown properly
+                const btnRect = this.getBoundingClientRect();
+                const windowWidth = window.innerWidth;
+                
+                // Ensure dropdown stays within viewport
+                if (windowWidth < 480) {
+                    // For very small screens, center the dropdown under the button
+                    const dropdownWidth = mobileShareDropdown.offsetWidth || 170; // Use default if not yet rendered
+                    const leftPosition = Math.max(10, btnRect.left - (dropdownWidth / 2) + (btnRect.width / 2));
+                    const rightEdge = leftPosition + dropdownWidth;
+                    
+                    if (rightEdge > windowWidth - 10) {
+                        mobileShareDropdown.style.right = '10px';
+                        mobileShareDropdown.style.left = 'auto';
+                    } else {
+                        mobileShareDropdown.style.left = leftPosition + 'px';
+                        mobileShareDropdown.style.right = 'auto';
+                    }
+                }
+                
+                // Add vibration feedback on mobile
+                if (navigator.vibrate) {
+                    navigator.vibrate(30);
+                }
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!mobileShareDropdown.contains(e.target) && !mobileShareBtn.contains(e.target)) {
+                    mobileShareDropdown.classList.remove('active');
+                }
+            });
+            
+            // Close dropdown when scrolling
+            window.addEventListener('scroll', function() {
+                mobileShareDropdown.classList.remove('active');
+            }, { passive: true });
+        }
+        
+        if (shareIcons.length > 0) {
+            shareIcons.forEach(icon => {
+                if (icon.classList.contains('copy')) {
+                    // Add tooltip element to copy button
+                    const tooltip = document.createElement('span');
+                    tooltip.className = 'copy-tooltip';
+                    tooltip.textContent = 'Copied!';
+                    icon.appendChild(tooltip);
+                    
+                    icon.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        navigator.clipboard.writeText(window.location.href).then(() => {
+                            // Visual feedback for copy success
+                            this.classList.add('copied');
+                            this.style.background = '#28a745';
+                            this.style.color = 'white';
+                            
+                            // Add a vibration for mobile feedback if available
+                            if (navigator.vibrate) {
+                                navigator.vibrate(50);
+                            }
+                            
+                            // Close dropdown on mobile after copying
+                            if (mobileShareDropdown) {
+                                setTimeout(() => {
+                                    mobileShareDropdown.classList.remove('active');
+                                }, 1500);
+                            }
+                            
+                            setTimeout(() => {
+                                this.classList.remove('copied');
+                                this.style.background = '';
+                                this.style.color = '';
+                            }, 2000);
+                        }).catch(err => {
+                            console.error('Could not copy text: ', err);
+                            // Fallback for browsers that don't support clipboard API
+                            const textArea = document.createElement('textarea');
+                            textArea.value = window.location.href;
+                            textArea.style.position = 'fixed';
+                            document.body.appendChild(textArea);
+                            textArea.focus();
+                            textArea.select();
+                            
+                            try {
+                                document.execCommand('copy');
+                                this.classList.add('copied');
+                                this.style.background = '#28a745';
+                                this.style.color = 'white';
+                                
+                                setTimeout(() => {
+                                    this.classList.remove('copied');
+                                    this.style.background = '';
+                                    this.style.color = '';
+                                }, 2000);
+                            } catch (err) {
+                                console.error('Fallback: Could not copy text: ', err);
+                            }
+                            
+                            document.body.removeChild(textArea);
+                        });
+                    });
+                } else {
+                    // Add touch feedback for mobile devices
+                    icon.addEventListener('touchstart', function() {
+                        this.style.transform = 'scale(0.95)';
+                    });
+                    
+                    icon.addEventListener('touchend', function() {
+                        this.style.transform = '';
+                    });
+                    
+                    // Close dropdown after clicking share link on mobile
+                    icon.addEventListener('click', function() {
+                        if (mobileShareDropdown && window.innerWidth <= 768) {
+                            setTimeout(() => {
+                                mobileShareDropdown.classList.remove('active');
+                            }, 300);
+                        }
+                    });
+                }
+            });
+        }
+    }
+    
+    // Initialize product detail share
+    initProductDetailShare();
     
     // Handle scroll events for header styling with improved smoothness
     function handleScroll() {
