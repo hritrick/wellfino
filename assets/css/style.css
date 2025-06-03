@@ -1196,12 +1196,11 @@ body {
         height: 90vh !important; /* 90% of viewport height on mobile */
         max-height: 90vh !important;
         min-height: 90vh !important;
-        margin-top: 65px;
+        margin-top: 60px;
     }
     
     .hero-container {
         height: 100%;
-        /* margin-top: 90px; */
     }
     
     .hero-content {

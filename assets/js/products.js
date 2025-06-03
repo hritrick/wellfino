@@ -4,6 +4,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const productsGrid = document.querySelector('.products-grid');
     const sortSelect = document.getElementById('sort-products');
     
+    // Check URL parameters for category filter
+    function getUrlParameter(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+    
+    // Get category from URL parameter
+    const categoryParam = getUrlParameter('category');
+    if (categoryParam && filterSelect) {
+        // Set the filter select value based on URL parameter
+        const options = Array.from(filterSelect.options);
+        const matchingOption = options.find(option => 
+            option.value.toLowerCase() === categoryParam.toLowerCase()
+        );
+        
+        if (matchingOption) {
+            filterSelect.value = matchingOption.value;
+            // We'll apply the filter after products are loaded
+        }
+    }
+    
     // Real product data from product-pages directory
     const productData = [
         {
@@ -315,6 +336,32 @@ document.addEventListener('DOMContentLoaded', function() {
             
             productsGrid.appendChild(productCard);
         });
+        
+        // Apply filter if URL parameter exists
+        if (categoryParam && filterSelect && filterSelect.value !== 'all') {
+            applyFilter(filterSelect.value);
+        }
+    }
+    
+    // Function to apply filter
+    function applyFilter(filterValue) {
+        document.querySelectorAll('.product-card').forEach(card => {
+            const productTag = card.querySelector('.product-tag');
+            
+            if (filterValue === 'all' || (productTag && productTag.textContent.toLowerCase().includes(filterValue.toLowerCase()))) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        // Reset animation order for visible cards
+        setTimeout(() => {
+            const visibleCards = document.querySelectorAll('.product-card[style="display: block"]');
+            visibleCards.forEach((card, index) => {
+                card.style.setProperty('--animation-order', index % 8 + 1);
+            });
+        }, 10);
     }
     
     // Function to get product image filename based on slug
@@ -549,24 +596,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (filterSelect) {
         filterSelect.addEventListener('change', function() {
             const filterValue = this.value;
-            
-            document.querySelectorAll('.product-card').forEach(card => {
-                const productTag = card.querySelector('.product-tag');
-                
-                if (filterValue === 'all' || (productTag && productTag.textContent.toLowerCase().includes(filterValue.toLowerCase()))) {
-                    card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                }
-            });
-            
-            // Reset animation order for visible cards
-            setTimeout(() => {
-                const visibleCards = document.querySelectorAll('.product-card[style="display: block"]');
-                visibleCards.forEach((card, index) => {
-                    card.style.setProperty('--animation-order', index % 8 + 1);
-                });
-            }, 10);
+            applyFilter(filterValue);
         });
     }
     
