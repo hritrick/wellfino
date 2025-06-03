@@ -1,19 +1,408 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize elements
     const filterSelect = document.getElementById('filter-products');
-    const productCards = document.querySelectorAll('.product-card');
     const productsGrid = document.querySelector('.products-grid');
     const sortSelect = document.getElementById('sort-products');
-    const header = document.querySelector('header');
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navbar = document.querySelector('.navbar');
-    let isMenuOpen = false;
-    let lastScrollTop = 0;
-    let scrollTimer;
+    
+    // Real product data from product-pages directory
+    const productData = [
+        {
+            id: 1,
+            name: "Welfix-UT",
+            description: "Treatment for urinary tract infections.",
+            type: "Gynaecology",
+            price: "₹225.00",
+            slug: "welfix-ut"
+        },
+        {
+            id: 2,
+            name: "Welfix-OVA",
+            description: "PCOS management and fertility support supplement.",
+            type: "Gynaecology",
+            price: "₹285.00",
+            slug: "welfix-ova"
+        },
+        {
+            id: 3,
+            name: "Welfipan-DSR",
+            description: "Treats Acidity, Nausea, Peptic Ulcer and Vomiting.",
+            type: "PPI",
+            price: "₹125.00",
+            slug: "welfipan-dsr"
+        },
+        {
+            id: 4,
+            name: "Vibenerve",
+            description: "B-complex vitamins for nerve health and function.",
+            type: "General",
+            price: "₹245.00",
+            slug: "vibenerve"
+        },
+        {
+            id: 5,
+            name: "Uphem",
+            description: "Iron supplement for anemia and iron deficiency.",
+            type: "Gynaecology",
+            price: "₹175.00",
+            slug: "uphem"
+        },
+        {
+            id: 6,
+            name: "Unergy-Q10",
+            description: "Coenzyme Q10 supplement for energy and heart health.",
+            type: "General",
+            price: "₹525.00",
+            slug: "unergy-q10"
+        },
+        {
+            id: 7,
+            name: "U4Glow",
+            description: "Face wash with kojic acid, glutathione, and vitamins C & E.",
+            type: "Dermatology",
+            price: "₹299.00",
+            slug: "u4glow-facewash"
+        },
+        {
+            id: 8,
+            name: "Pronix-20",
+            description: "Proton pump inhibitor (PPI) for acid-related disorders.",
+            type: "PPI",
+            price: "₹425.00",
+            slug: "pronix-20"
+        },
+        {
+            id: 9,
+            name: "Pro-Nivcal",
+            description: "Advanced calcium supplement with vitamin D.",
+            type: "Gynaecology",
+            price: "₹175.00",
+            slug: "pro-nivcal"
+        },
+        {
+            id: 10,
+            name: "Nivrab-DSR",
+            description: "Delayed-release capsule for acid reflux treatment.",
+            type: "PPI",
+            price: "₹125.00",
+            slug: "nivrab-dsr"
+        },
+        {
+            id: 11,
+            name: "NIV-D3",
+            description: "Vitamin D3 supplement for bone health.",
+            type: "Orthopedic",
+            price: "₹120.00",
+            slug: "niv-d3"
+        },
+        {
+            id: 12,
+            name: "Niqcee-Z",
+            description: "Vitamin C and zinc supplement for immunity.",
+            type: "General",
+            price: "₹120.00",
+            slug: "niqcee-z"
+        },
+        {
+            id: 13,
+            name: "Nilobact-200LB",
+            description: "Probiotic supplement for digestive health.",
+            type: "Antibiotics",
+            price: "₹145.00",
+            slug: "nilobact"
+        },
+        {
+            id: 14,
+            name: "Morrcef-CV",
+            description: "Combination antibiotic for bacterial infections.",
+            type: "Antibiotics",
+            price: "₹265.00",
+            slug: "morrcef-cv"
+        },
+        {
+            id: 15,
+            name: "Mivinta",
+            description: "Basic nutritional supplement for adults.",
+            type: "General",
+            price: "₹165.00",
+            slug: "mivinta"
+        },
+        {
+            id: 16,
+            name: "Mivinta Pro (Elaichi)",
+            description: "Protein with DHA, multivitamins, and minerals for immunity.",
+            type: "General",
+            price: "₹399.00",
+            slug: "mivinta-pro-elaichi"
+        },
+        {
+            id: 17,
+            name: "Mivinta Pro (Chocolate)",
+            description: "Protein with DHA, multivitamins, and minerals for immunity.",
+            type: "General",
+            price: "₹399.00",
+            slug: "mivinta-pro-choc"
+        },
+        {
+            id: 18,
+            name: "Lusazic",
+            description: "Anti-dandruff shampoo with antifungal properties.",
+            type: "Dermatology",
+            price: "₹449.00",
+            slug: "lusazic"
+        },
+        {
+            id: 19,
+            name: "Lubexin",
+            description: "Anti-fungal cream that targets and eliminates fungal infections, soothing irritated skin.",
+            type: "Dermatology",
+            price: "₹125.00",
+            slug: "lubexin"
+        },
+        {
+            id: 20,
+            name: "Laxomyn",
+            description: "Gentle laxative for constipation relief.",
+            type: "General",
+            price: "₹125.00",
+            slug: "laxomyn"
+        },
+        {
+            id: 21,
+            name: "K2-Nivcal",
+            description: "Vitamin K2 with calcium for bone health.",
+            type: "Orthopedic",
+            price: "₹185.00",
+            slug: "k2-nivcal"
+        },
+        {
+            id: 22,
+            name: "Jigfol",
+            description: "Folic acid supplement for pregnancy health.",
+            type: "Gynaecology",
+            price: "₹225.00",
+            slug: "jigfol"
+        },
+        {
+            id: 23,
+            name: "Hidranergy",
+            description: "Oral Rehydration salts with electrolytes, vitamin C and lactobacillus.",
+            type: "General",
+            price: "₹36.00",
+            slug: "hidranergy"
+        },
+        {
+            id: 24,
+            name: "Enzonix",
+            description: "Proteolytic enzyme formula for inflammation and tissue repair.",
+            type: "Orthopedic",
+            price: "₹225.00",
+            slug: "enzonix"
+        },
+        {
+            id: 25,
+            name: "Emvaas",
+            description: "Gentle, pH-balanced feminine wash.",
+            type: "Gynaecology",
+            price: "₹185.00",
+            slug: "emvaas"
+        },
+        {
+            id: 26,
+            name: "Dozinix",
+            description: "Relieves nausea and vomiting during pregnancy.",
+            type: "Gynaecology",
+            price: "₹99.00",
+            slug: "dozinix"
+        },
+        {
+            id: 27,
+            name: "Blissglow-H",
+            description: "Nourishes skin and hair from within for a radiant, healthy glow.",
+            type: "Dermatology",
+            price: "₹225.00",
+            slug: "blissglow-h"
+        },
+        {
+            id: 28,
+            name: "Allemont-LC",
+            description: "Anti-allergic combination for allergic rhinitis and cough.",
+            type: "General",
+            price: "₹130.00",
+            slug: "allemont-lc"
+        },
+        {
+            id: 29,
+            name: "Acepimol-Cold",
+            description: "Relief from cold, cough, and flu symptoms.",
+            type: "General",
+            price: "₹99.00",
+            slug: "acepimol-cold"
+        },
+        {
+            id: 30,
+            name: "Acepimol-SP",
+            description: "Strong pain reliever with extended release formula.",
+            type: "General",
+            price: "₹125.00",
+            slug: "acepimol-sp"
+        },
+        {
+            id: 31,
+            name: "Xitcid",
+            description: "Treatment for excessive stomach acid production.",
+            type: "PPI",
+            price: "₹80.00",
+            slug: "xitcid"
+        },
+        {
+            id: 32,
+            name: "Xitmox-LB625",
+            description: "Advanced probiotic blend with lactobacillus.",
+            type: "Antibiotics",
+            price: "₹165.00",
+            slug: "xitmox-lb625"
+        }
+    ];
+
+    // Function to load products
+    function loadProducts() {
+        productsGrid.innerHTML = ''; // Clear existing products
+        
+        productData.forEach((product, index) => {
+            const productCard = document.createElement('div');
+            productCard.className = 'product-card';
+            productCard.style.setProperty('--animation-order', (index % 8) + 1);
+            
+            productCard.innerHTML = `
+                <div class="product-image">
+                    <a href="product-pages/${product.slug}.html">
+                        <img src="assets/img/products/${getProductImage(product.slug)}" alt="${product.name}">
+                    </a>
+                    <span class="product-tag">${product.type}</span>
+                    <button class="share-button" aria-label="Share product">
+                        <i class="ri-share-line"></i>
+                    </button>
+                    <div class="share-tooltip">
+                        <div class="share-option" data-type="facebook">
+                            <i class="ri-facebook-fill"></i>
+                            <span>Facebook</span>
+                        </div>
+                        <div class="share-option" data-type="twitter">
+                            <i class="ri-twitter-x-fill"></i>
+                            <span>Twitter</span>
+                        </div>
+                        <div class="share-option" data-type="whatsapp">
+                            <i class="ri-whatsapp-line"></i>
+                            <span>WhatsApp</span>
+                        </div>
+                        <div class="share-option" data-type="copy">
+                            <i class="ri-link"></i>
+                            <span>Copy Link</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <a href="product-pages/${product.slug}.html">
+                        <h3 class="product-name">${product.name}</h3>
+                    </a>
+                    <p class="product-description">${product.description}</p>
+                    <div class="product-meta">
+                        <span class="product-form">${getProductForm(product.slug)}</span>
+                        <span class="product-price">${product.price}</span>
+                    </div>
+                </div>
+            `;
+            
+            productsGrid.appendChild(productCard);
+        });
+    }
+    
+    // Function to get product image filename based on slug
+    function getProductImage(slug) {
+        const imageMap = {
+            'acepimol-cold': 'acepimol-cold.png',
+            'acepimol-sp': 'acepimol-sp.png',
+            'allemont-lc': 'allemont-lc.png',
+            'blissglow-h': 'blissglow-h.png',
+            'dozinix': 'dozinix.png',
+            'emvaas': 'emvaas.png',
+            'enzonix': 'enzonix.jpeg',
+            'hidranergy': 'hidranergy.png',
+            'jigfol': 'jigfol.jpg',
+            'k2-nivcal': 'k2-nivcal.png',
+            'laxomyn': 'laxomyn.png',
+            'lubexin': 'lubexin.png',
+            'lusazic': 'lusazic.jpg',
+            'mivinta': 'mivinta.png',
+            'mivinta-pro-choc': 'mivinta-pro-choc.png',
+            'mivinta-pro-elaichi': 'mivinta-pro.jpg',
+            'morrcef-cv': 'morrcef-cv.png',
+            'nilobact': 'nilobact.png',
+            'niqcee-z': 'niqcee-z.png',
+            'niv-d3': 'NIV D3.png',
+            'nivrab-dsr': 'nivrab-dsr.png',
+            'pro-nivcal': 'pro-nivcal.png',
+            'pronix-20': 'pronix-20.jpeg',
+            'u4glow-facewash': 'u4glow.png',
+            'unergy-q10': 'unergy-q10.png',
+            'uphem': 'uphem.jpg',
+            'vibenerve': 'vibenerve.png',
+            'welfipan-dsr': 'welfipan-dsr.png',
+            'welfix-ova': 'welfix-ova.png',
+            'welfix-ut': 'welfix-ut.jpg',
+            'xitcid': 'xitcid.png',
+            'xitmox-lb625': 'xitmox-lb625.png'
+        };
+        
+        return imageMap[slug] || `${slug}.png`;
+    }
+    
+    // Function to get product form based on slug
+    function getProductForm(slug) {
+        const formMap = {
+            'acepimol-cold': 'Tablets',
+            'acepimol-sp': 'Tablets',
+            'allemont-lc': 'Tablets',
+            'blissglow-h': 'Tablets',
+            'dozinix': 'Tablets',
+            'emvaas': 'Intimate Wash',
+            'enzonix': 'Tablets',
+            'hidranergy': 'ORS',
+            'jigfol': 'Capsules',
+            'k2-nivcal': 'Tablets',
+            'laxomyn': 'Capsules',
+            'lubexin': 'Cream',
+            'lusazic': 'Shampoo',
+            'mivinta': 'Supplement',
+            'mivinta-pro-choc': 'Supplement',
+            'mivinta-pro-elaichi': 'Supplement',
+            'morrcef-cv': 'Tablets',
+            'nilobact': 'Tablets',
+            'niqcee-z': 'Tablets',
+            'niv-d3': 'Capsules',
+            'nivrab-dsr': 'Capsules',
+            'pro-nivcal': 'Tablets',
+            'pronix-20': 'Tablets',
+            'u4glow-facewash': 'Facewash',
+            'unergy-q10': 'Capsules',
+            'uphem': 'Tablets',
+            'vibenerve': 'Tablets',
+            'welfipan-dsr': 'Capsules',
+            'welfix-ova': 'Tablets',
+            'welfix-ut': 'Syrup',
+            'xitcid': 'Tablets',
+            'xitmox-lb625': 'Tablets'
+        };
+        
+        return formMap[slug] || 'Tablets';
+    }
+    
+    // Load products on page load
+    loadProducts();
     
     // Set animation order for initial products
     function setAnimationOrder() {
-        productCards.forEach((card, index) => {
+        document.querySelectorAll('.product-card').forEach((card, index) => {
             card.style.setProperty('--animation-order', index % 8 + 1); // Increased to 8 for more variation
         });
     }
@@ -24,7 +413,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize product card links
     function initProductLinks() {
         // Prevent default click behavior on entire card to avoid interfering with links
-        productCards.forEach(card => {
+        document.querySelectorAll('.product-card').forEach(card => {
             card.addEventListener('click', function(e) {
                 // Only handle click if not clicking on a link or share button
                 if (!e.target.closest('a') && !e.target.closest('.share-button') && !e.target.closest('.share-tooltip')) {
@@ -134,13 +523,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fixedUrl)}`, '_blank');
                 break;
             case 'twitter':
-                window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(fixedUrl)}`, '_blank');
+                window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(fixedUrl)}`, '_blank');
                 break;
             case 'whatsapp':
                 window.open(`https://wa.me/?text=${encodeURIComponent(text + ' ' + fixedUrl)}`, '_blank');
                 break;
             case 'copy':
-                navigator.clipboard.writeText(url).then(() => {
+                navigator.clipboard.writeText(fixedUrl).then(() => {
                     // Show copy success feedback
                     const copyOption = document.querySelector(`.share-option[data-type="copy"]`);
                     const originalText = copyOption.querySelector('span').textContent;
@@ -156,296 +545,43 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Handle share functionality on product detail page
-    function initProductDetailShare() {
-        const shareIcons = document.querySelectorAll('.product-detail-share .share-icon, .mobile-share-dropdown .share-icon');
-        const mobileShareBtn = document.querySelector('.mobile-share-button');
-        const mobileShareDropdown = document.querySelector('.mobile-share-dropdown');
-        
-        // Handle mobile share button click
-        if (mobileShareBtn && mobileShareDropdown) {
-            mobileShareBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                mobileShareDropdown.classList.toggle('active');
+    // Filter products functionality
+    if (filterSelect) {
+        filterSelect.addEventListener('change', function() {
+            const filterValue = this.value;
+            
+            document.querySelectorAll('.product-card').forEach(card => {
+                const productTag = card.querySelector('.product-tag');
                 
-                // Position the dropdown properly
-                const btnRect = this.getBoundingClientRect();
-                const windowWidth = window.innerWidth;
-                
-                // Ensure dropdown stays within viewport
-                if (windowWidth < 480) {
-                    // For very small screens, center the dropdown under the button
-                    const dropdownWidth = mobileShareDropdown.offsetWidth || 170; // Use default if not yet rendered
-                    const leftPosition = Math.max(10, btnRect.left - (dropdownWidth / 2) + (btnRect.width / 2));
-                    const rightEdge = leftPosition + dropdownWidth;
-                    
-                    if (rightEdge > windowWidth - 10) {
-                        mobileShareDropdown.style.right = '10px';
-                        mobileShareDropdown.style.left = 'auto';
-                    } else {
-                        mobileShareDropdown.style.left = leftPosition + 'px';
-                        mobileShareDropdown.style.right = 'auto';
-                    }
-                }
-                
-                // Add vibration feedback on mobile
-                if (navigator.vibrate) {
-                    navigator.vibrate(30);
-                }
-            });
-            
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!mobileShareDropdown.contains(e.target) && !mobileShareBtn.contains(e.target)) {
-                    mobileShareDropdown.classList.remove('active');
-                }
-            });
-            
-            // Close dropdown when scrolling
-            window.addEventListener('scroll', function() {
-                mobileShareDropdown.classList.remove('active');
-            }, { passive: true });
-        }
-        
-        if (shareIcons.length > 0) {
-            shareIcons.forEach(icon => {
-                if (icon.classList.contains('copy')) {
-                    // Add tooltip element to copy button
-                    const tooltip = document.createElement('span');
-                    tooltip.className = 'copy-tooltip';
-                    tooltip.textContent = 'Copied!';
-                    icon.appendChild(tooltip);
-                    
-                    icon.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        // Fix URL path if needed
-                        const fixedUrl = window.location.href.replace('/products/product-pages/', '/product-pages/');
-                        navigator.clipboard.writeText(fixedUrl).then(() => {
-                            // Visual feedback for copy success
-                            this.classList.add('copied');
-                            this.style.background = '#28a745';
-                            this.style.color = 'white';
-                            
-                            // Add a vibration for mobile feedback if available
-                            if (navigator.vibrate) {
-                                navigator.vibrate(50);
-                            }
-                            
-                            // Close dropdown on mobile after copying
-                            if (mobileShareDropdown) {
-                                setTimeout(() => {
-                                    mobileShareDropdown.classList.remove('active');
-                                }, 1500);
-                            }
-                            
-                            setTimeout(() => {
-                                this.classList.remove('copied');
-                                this.style.background = '';
-                                this.style.color = '';
-                            }, 2000);
-                        }).catch(err => {
-                            console.error('Could not copy text: ', err);
-                            // Fallback for browsers that don't support clipboard API
-                            const textArea = document.createElement('textarea');
-                            textArea.value = window.location.href;
-                            textArea.style.position = 'fixed';
-                            document.body.appendChild(textArea);
-                            textArea.focus();
-                            textArea.select();
-                            
-                            try {
-                                document.execCommand('copy');
-                                this.classList.add('copied');
-                                this.style.background = '#28a745';
-                                this.style.color = 'white';
-                                
-                                setTimeout(() => {
-                                    this.classList.remove('copied');
-                                    this.style.background = '';
-                                    this.style.color = '';
-                                }, 2000);
-                            } catch (err) {
-                                console.error('Fallback: Could not copy text: ', err);
-                            }
-                            
-                            document.body.removeChild(textArea);
-                        });
-                    });
-                } else {
-                    // Add touch feedback for mobile devices
-                    icon.addEventListener('touchstart', function() {
-                        this.style.transform = 'scale(0.95)';
-                    });
-                    
-                    icon.addEventListener('touchend', function() {
-                        this.style.transform = '';
-                    });
-                    
-                    // Close dropdown after clicking share link on mobile
-                    icon.addEventListener('click', function() {
-                        if (mobileShareDropdown && window.innerWidth <= 768) {
-                            setTimeout(() => {
-                                mobileShareDropdown.classList.remove('active');
-                            }, 300);
-                        }
-                    });
-                }
-            });
-        }
-    }
-    
-    // Initialize product detail share
-    initProductDetailShare();
-    
-    // Handle scroll events for header styling with improved smoothness
-    function handleScroll() {
-        clearTimeout(scrollTimer);
-        
-        scrollTimer = setTimeout(function() {
-            const currentScrollTop = window.scrollY;
-            
-            if (currentScrollTop > 50) {
-                if (!header.classList.contains('scrolled')) {
-                    header.classList.add('scrolled');
-                    // Adjust logo size on scroll with smooth transition
-                    const logoImg = document.querySelector('.logo-link img');
-                    if (logoImg) {
-                        logoImg.style.transition = 'height 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-                        logoImg.style.height = '36px';
-                    }
-                }
-            } else {
-                if (header.classList.contains('scrolled')) {
-                    header.classList.remove('scrolled');
-                    // Reset logo size with smooth transition
-                    const logoImg = document.querySelector('.logo-link img');
-                    if (logoImg) {
-                        logoImg.style.transition = 'height 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-                        logoImg.style.height = '';
-                    }
-                }
-            }
-            
-            lastScrollTop = currentScrollTop;
-        }, 10); // Small timeout for better performance while maintaining smoothness
-    }
-
-    // Add scroll event listener with passive option for better performance
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    // Initialize on page load
-    handleScroll();
-    
-    // Filter products with animation using dropdown
-    filterSelect.addEventListener('change', function() {
-        const filter = this.value;
-        
-        // Add subtle animation to the select
-        this.style.transform = 'scale(1.05)';
-        setTimeout(() => {
-            this.style.transform = 'scale(1)';
-        }, 300);
-        
-        // Add fade out animation to products grid
-        productsGrid.style.opacity = '0';
-        
-        setTimeout(() => {
-            // Filter products
-            let visibleCount = 0;
-            productCards.forEach(card => {
-                if (filter === 'all') {
+                if (filterValue === 'all' || (productTag && productTag.textContent.toLowerCase().includes(filterValue.toLowerCase()))) {
                     card.style.display = 'block';
-                    visibleCount++;
-                } else {
-                    const tagElement = card.querySelector('.product-tag');
-                    const tagText = tagElement ? tagElement.textContent.toLowerCase() : '';
-                    const tagClass = tagElement ? tagElement.className.toLowerCase() : '';
-                    
-                    if ((filter === 'general' && tagText === 'general') || 
-                        (filter === 'gynaecology' && (tagText === 'gynaecology' || tagClass.includes('gynaecology'))) || 
-                        (filter === 'orthopedic' && (tagText === 'orthopedic' || tagClass.includes('orthopedic'))) ||
-                        (filter === 'dermatology' && (tagText === 'dermatology' || tagClass.includes('dermatology'))) ||
-                        (filter === 'antibiotics' && (tagText === 'antibiotics' || tagClass.includes('antibiotics'))) ||
-                        (filter === 'ppi' && (tagText === 'ppi' || tagClass.includes('ppi')))) {
-                        card.style.display = 'block';
-                        visibleCount++;
                     } else {
                         card.style.display = 'none';
-                    }
                 }
             });
             
             // Reset animation order for visible cards
-            let order = 1;
-            productCards.forEach(card => {
-                if (card.style.display !== 'none') {
-                    card.style.setProperty('--animation-order', order % 8); // Increased to 8
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(30px)';
-                    order++;
-                }
-            });
-            
-            // Fade in the grid
-            productsGrid.style.opacity = '1';
-            
-            // Animate visible cards with staggered delay
             setTimeout(() => {
-                let delay = 0;
-                productCards.forEach(card => {
-                    if (card.style.display !== 'none') {
-                        setTimeout(() => {
-                            card.style.opacity = '1';
-                            card.style.transform = 'translateY(0)';
-                            card.style.transition = 'opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-                        }, delay);
-                        delay += 50;
-                    }
+                const visibleCards = document.querySelectorAll('.product-card[style="display: block"]');
+                visibleCards.forEach((card, index) => {
+                    card.style.setProperty('--animation-order', index % 8 + 1);
                 });
-            }, 100);
-            
-            // Show message if no products found
-            if (visibleCount === 0 && filter !== 'all') {
-                const noProductsMsg = document.createElement('div');
-                noProductsMsg.className = 'no-products-message';
-                noProductsMsg.innerHTML = `<p>No products found in the "${filter}" category. <button class="reset-filter">View all products</button></p>`;
-                productsGrid.appendChild(noProductsMsg);
-                
-                // Add event listener to reset button
-                const resetBtn = noProductsMsg.querySelector('.reset-filter');
-                resetBtn.addEventListener('click', function() {
-                    // Set the filter dropdown back to "all"
-                    filterSelect.value = 'all';
-                    // Trigger the change event
-                    const event = new Event('change');
-                    filterSelect.dispatchEvent(event);
-                });
-            } else {
-                // Remove any existing "no products" message
-                const existingMsg = productsGrid.querySelector('.no-products-message');
-                if (existingMsg) {
-                    existingMsg.remove();
-                }
-            }
-        }, 300); // Delay to allow fade out animation
-    });
+            }, 10);
+        });
+    }
     
-    // Sort products with animation
+    // Sort products functionality
+    if (sortSelect) {
     sortSelect.addEventListener('change', function() {
         const sortValue = this.value;
-        const products = Array.from(productCards);
-        
-        // Add fade out animation
-        productsGrid.style.opacity = '0.5';
-        
-        setTimeout(() => {
-            products.sort((a, b) => {
-                if (sortValue === 'default') return 0;
-                
+            const cards = Array.from(document.querySelectorAll('.product-card'));
+            
+            cards.sort((a, b) => {
                 const nameA = a.querySelector('.product-name').textContent;
                 const nameB = b.querySelector('.product-name').textContent;
                 
-                const priceA = parseFloat(a.querySelector('.product-price').textContent.replace('₹', ''));
-                const priceB = parseFloat(b.querySelector('.product-price').textContent.replace('₹', ''));
+                const priceA = parseFloat(a.querySelector('.product-price').textContent.replace('₹', '').trim());
+                const priceB = parseFloat(b.querySelector('.product-price').textContent.replace('₹', '').trim());
                 
                 switch(sortValue) {
                     case 'name-asc':
@@ -457,298 +593,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     case 'price-desc':
                         return priceB - priceA;
                     default:
-                        return 0;
+                        return 0; // Keep original order for default
                 }
             });
             
-            // Apply visual effects during sorting
-            products.forEach((product, index) => {
-                // Add staggered animation delay
-                product.style.setProperty('--animation-order', index % 8 + 1); // Increased to 8
-                
-                // Reset opacity and transform for animation
-                product.style.opacity = '0';
-                product.style.transform = 'translateY(20px)';
-                
-                // Reappend to apply the new order
-                productsGrid.appendChild(product);
+            // Remove all cards from grid
+            cards.forEach(card => {
+                productsGrid.removeChild(card);
             });
             
-            // Fade in the grid
-            productsGrid.style.opacity = '1';
-            
-            // Animate cards back in with staggered delay
-            let delay = 100;
-            products.forEach(product => {
-                setTimeout(() => {
-                    product.style.opacity = '1';
-                    product.style.transform = 'translateY(0)';
-                    product.style.transition = 'opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-                }, delay);
-                delay += 50;
-            });
-        }, 300); // Delay to allow fade out animation
-    });
-    
-    // Handle mobile menu with improved animations
-    if (mobileMenuBtn && navbar) {
-        mobileMenuBtn.addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent event from bubbling up
-            isMenuOpen = !isMenuOpen;
-            
-            // Add transition before adding active class for smoother animation
-            navbar.style.transition = 'right 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-            
-            if (isMenuOpen) {
-                // Use requestAnimationFrame for smoother animation
-                requestAnimationFrame(() => {
-                    navbar.classList.add('active');
-                    
-                    // Smooth icon transition
-                    this.style.transition = 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
-                    this.style.transform = 'rotate(90deg)';
-                    
-                    // Wait for transform transition before changing the icon
-                    setTimeout(() => {
-                        this.innerHTML = '<i class="ri-close-line"></i>';
-                        this.style.transform = 'rotate(0deg)';
-                    }, 150);
-                    
-                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-                });
-            } else {
-                navbar.classList.remove('active');
-                
-                // Smooth icon transition
-                this.style.transition = 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)';
-                this.style.transform = 'rotate(-90deg)';
-                
-                // Wait for transform transition before changing the icon
-                setTimeout(() => {
-                    this.innerHTML = '<i class="ri-menu-line"></i>';
-                    this.style.transform = 'rotate(0deg)';
-                }, 150);
-                
-                document.body.style.overflow = '';
-            }
-        });
-        
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(e) {
-            if (isMenuOpen && !navbar.contains(e.target) && e.target !== mobileMenuBtn) {
-                isMenuOpen = false;
-                navbar.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="ri-menu-line"></i>';
-                document.body.style.overflow = '';
-            }
-        });
-        
-        // Close mobile menu when clicking on a nav link
-        const navLinks = navbar.querySelectorAll('a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                if (isMenuOpen && window.innerWidth <= 768) {
-                    isMenuOpen = false;
-                    navbar.classList.remove('active');
-                    mobileMenuBtn.innerHTML = '<i class="ri-menu-line"></i>';
-                    document.body.style.overflow = '';
-                }
+            // Add sorted cards back to grid
+            cards.forEach((card, index) => {
+                productsGrid.appendChild(card);
+                card.style.setProperty('--animation-order', index % 8 + 1);
             });
         });
     }
-    
-    // Add CSS for no products message
-    const style = document.createElement('style');
-    style.textContent = `
-        .no-products-message {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 40px 20px;
-            background: rgba(0, 0, 0, 0.02);
-            border-radius: 16px;
-            animation: fadeIn 0.5s ease forwards;
-        }
-        
-        .no-products-message p {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 15px;
-        }
-        
-        .reset-filter {
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
-        
-        .reset-filter:hover {
-            background: #0056b3;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.25);
-        }
-    `;
-    document.head.appendChild(style);
-    
-    // Smooth scroll with mobile-friendly behavior
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (!targetElement) return;
-            
-            e.preventDefault();
-            
-            // Get header height for offset (account for floating navbar)
-            const headerHeight = document.querySelector('nav').offsetHeight + 20;
-            
-            // Smooth scroll to target with header offset
-            window.scrollTo({
-                top: targetElement.offsetTop - headerHeight,
-                behavior: 'smooth'
-            });
-        });
-    });
-
-    // Apply new product detail layout if on a product detail page
-    function applyProductDetailLayout() {
-        // Check if we're on a product detail page
-        const productDetailContainer = document.querySelector('.product-detail');
-        if (!productDetailContainer) return;
-        
-        // Check if the new layout is already applied
-        if (document.querySelector('.product-detail-essentials')) return;
-        
-        // Get the necessary elements
-        const productImage = productDetailContainer.querySelector('.product-detail-image');
-        const productContent = productDetailContainer.querySelector('.product-detail-content');
-        const productDescription = productContent.querySelector('.product-detail-description');
-        const productMeta = productContent.querySelector('.product-detail-meta');
-        
-        // Create new container structure
-        const productDetailTop = document.createElement('div');
-        productDetailTop.className = 'product-detail-top';
-        
-        // Create essentials container for image and basic info
-        const productDetailEssentials = document.createElement('div');
-        productDetailEssentials.className = 'product-detail-essentials';
-        
-        // Create product info container for full-width description
-        const productDetailInfo = document.createElement('div');
-        productDetailInfo.className = 'product-detail-info';
-        
-        // Set up the structure
-        productDetailContainer.insertBefore(productDetailTop, productImage);
-        productDetailTop.appendChild(productDetailEssentials);
-        
-        // Move image and content to essentials section
-        productDetailEssentials.appendChild(productImage);
-        productDetailEssentials.appendChild(productContent);
-        
-        // Move product description to info section (full width)
-        if (productDescription && productMeta) {
-            productContent.insertBefore(productMeta, productDescription);
-            productDetailInfo.appendChild(productDescription);
-            productDetailTop.appendChild(productDetailInfo);
-        }
-        
-        // Add Buy Now and Add to Cart buttons
-        addProductActionButtons();
-    }
-    
-    // Add Buy Now and Add to Cart buttons
-    function addProductActionButtons() {
-        // Check if we're on a product detail page
-        const productDetailContent = document.querySelector('.product-detail-content');
-        if (!productDetailContent) return;
-        
-        // Check if buttons already exist
-        if (productDetailContent.querySelector('.product-actions')) return;
-        
-        // Find the price element
-        const priceElement = productDetailContent.querySelector('.product-detail-price');
-        if (!priceElement) return;
-        
-        // Create action buttons container
-        const actionsContainer = document.createElement('div');
-        actionsContainer.className = 'product-actions';
-        
-        // Create Buy Now button
-        const buyNowButton = document.createElement('button');
-        buyNowButton.className = 'product-action-btn btn-buy-now';
-        buyNowButton.innerHTML = '<i class="ri-shopping-bag-3-line"></i> Buy Now';
-        
-        // Create Add to Cart button
-        const addCartButton = document.createElement('button');
-        addCartButton.className = 'product-action-btn btn-add-cart';
-        addCartButton.innerHTML = '<i class="ri-shopping-cart-line"></i> Add to Cart';
-        
-        // Add buttons to container
-        actionsContainer.appendChild(buyNowButton);
-        actionsContainer.appendChild(addCartButton);
-        
-        // Insert container after price element
-        priceElement.insertAdjacentElement('afterend', actionsContainer);
-        
-        // Add event listeners
-        buyNowButton.addEventListener('click', handleBuyNow);
-        addCartButton.addEventListener('click', handleAddToCart);
-    }
-    
-    // Handle Buy Now button click
-    function handleBuyNow() {
-        // Get product details
-        const productTitle = document.querySelector('.product-detail-title').textContent;
-        const productPrice = document.querySelector('.product-detail-price').textContent;
-        
-        // Show confirmation with vibration feedback on mobile
-        if (navigator.vibrate) {
-            navigator.vibrate(50);
-        }
-        
-        // In a real implementation, this would redirect to checkout
-        // For now, show an alert
-        alert(`Buying now: ${productTitle} for ${productPrice}`);
-        
-        // You would typically redirect to checkout here
-        // window.location.href = '/checkout.html?product=' + encodeURIComponent(productTitle);
-    }
-    
-    // Handle Add to Cart button click
-    function handleAddToCart() {
-        // Get the button
-        const button = this;
-        
-        // Get product details
-        const productTitle = document.querySelector('.product-detail-title').textContent;
-        
-        // Add vibration feedback on mobile
-        if (navigator.vibrate) {
-            navigator.vibrate([30, 50, 30]);
-        }
-        
-        // Visual feedback - change button appearance
-        button.classList.add('added');
-        button.innerHTML = '<i class="ri-check-line"></i> Added to Cart';
-        
-        // In a real implementation, this would add the item to cart
-        // For demonstration, revert button after delay
-        setTimeout(() => {
-            button.classList.remove('added');
-            button.innerHTML = '<i class="ri-shopping-cart-line"></i> Add to Cart';
-        }, 2000);
-        
-        // You would typically update cart count and store in localStorage here
-        // updateCartCount(1);
-    }
-    
-    // Call the function to apply the new layout
-    applyProductDetailLayout();
 }); 

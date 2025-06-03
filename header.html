@@ -1,0 +1,40 @@
+<!-- Header Component -->
+<header>
+    <nav>
+        <a href="index.html" class="logo-link">
+            <img src="assets/img/Wellfino Logo.png" alt="Wellfino Pharmaceutical Logo">
+        </a>
+        <div class="navbar">
+            <a href="products.html" id="nav-products">PRODUCTS</a>
+            <a href="index.html#about" id="nav-about">ABOUT US</a>
+            <a href="#footer" class="contact-link">CONTACT</a>
+        </div>
+        <button class="mobile-menu-btn" aria-label="Toggle menu">
+            <i class="ri-menu-line"></i>
+        </button>
+    </nav>
+</header>
+
+<script>
+    // Set active nav item based on current page
+    document.addEventListener("DOMContentLoaded", function() {
+        const currentPage = window.location.pathname.split("/").pop();
+        
+        if (currentPage === "products.html") {
+            document.getElementById("nav-products").classList.add("active");
+        } else if (currentPage === "index.html" || currentPage === "") {
+            // Only add active class to About if we're not on the products page
+            if (window.location.hash === "#about") {
+                document.getElementById("nav-about").classList.add("active");
+            }
+        }
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+        const navbar = document.querySelector(".navbar");
+        
+        mobileMenuBtn.addEventListener("click", function() {
+            navbar.classList.toggle("active");
+        });
+    });
+</script> 

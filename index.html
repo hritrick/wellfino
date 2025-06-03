@@ -14,9 +14,9 @@
     <!-- Fonts and Styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
     rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/css/common.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -26,8 +26,8 @@
                 <img src="assets/img/Wellfino Logo.png" alt="Wellfino Pharmaceutical Logo">
             </a>
             <div class="navbar">
-                <a href="products.html">PRODUCTS</a>
-                <a href="#about">ABOUT US</a>
+                <a href="products.html" id="nav-products">PRODUCTS</a>
+                <a href="#about" id="nav-about">ABOUT US</a>
                 <a href="#footer" class="contact-link">CONTACT</a>
             </div>
             <button class="mobile-menu-btn" aria-label="Toggle menu">
@@ -38,9 +38,12 @@
 
     <main>
         <section class="hero-section">
-            <div class="hero-background" style="background-image: url('assets/img/hero-bg.jpg');"></div>
+            <div class="hero-background"></div>
             <div class="hero-overlay"></div>
             <div class="hero-container">
+                <div class="hero-illustration">
+                    <img src="assets/img/medicine illustration.svg" alt="Medical illustration" class="hero-svg">
+                </div>
                 <div class="hero-content">
                     <h1>Advancing Healthcare Through Innovation</h1>
                     <p>At Wellfino Pharmaceutical, we're dedicated to developing breakthrough medicines and improving lives through cutting-edge research and development.</p>
@@ -256,7 +259,6 @@
             <div class="contact-section">
                 <h3 class="contact-title">OFFICE ADDRESS</h3>
                 <div class="contact-item address">
-                    <i class="ri-map-pin-line"></i>
                     <div class="address-text">
                         <span class="addr-line">Wellfino Pharmaceutical Pvt. Ltd.</span>
                         <span class="addr-line">Office No. 3/4, Jadhav Gadh Building</span>
@@ -284,7 +286,7 @@
                     </div>
                 </div>
             </div>
-            <div class="social-section">
+            <div class="contact-section">
                 <h3 class="contact-title">SOCIALS</h3>
                 <div class="social-links">
                     <a href="https://www.facebook.com/people/Wellfino-Pharmaceuticals/61575057133543/" target="_blank" rel="noopener noreferrer" class="social-link">
@@ -300,6 +302,7 @@
             <p>© 2025 Wellfino Pharmaceutical Pvt. Ltd.</p>
         </div>
     </footer>
+    <script src="assets/js/common.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
 </html>
