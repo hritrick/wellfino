@@ -1193,10 +1193,10 @@ body {
 
 @media (max-width: 768px) {
     .hero-section {
-        height: 90vh !important; /* 75% of viewport height on mobile */
+        height: 90vh !important; /* 90% of viewport height on mobile */
         max-height: 90vh !important;
         min-height: 90vh !important;
-        margin-top: 90px;
+        margin-top: 65px;
     }
     
     .hero-container {

@@ -636,6 +636,79 @@ header.scrolled {
     align-items: flex-start;
 }
 
+/* Composition section */
+.product-composition {
+    width: 100%;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: rgba(0, 123, 255, 0.03);
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+}
+
+.product-composition h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.composition-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.composition-table th,
+.composition-table td {
+    padding: 10px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.composition-table th {
+    font-weight: 600;
+    color: #007bff;
+    background-color: rgba(0, 123, 255, 0.05);
+}
+
+.composition-table tr:last-child td {
+    border-bottom: none;
+}
+
+.composition-table .ingredient {
+    font-weight: 500;
+}
+
+.composition-table .dosage {
+    color: #555;
+}
+
+@media (max-width: 768px) {
+    .product-composition {
+        padding: 15px;
+    }
+    
+    .composition-table th,
+    .composition-table td {
+        padding: 8px 10px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-composition {
+        padding: 12px;
+        margin-bottom: 20px;
+    }
+    
+    .composition-table th,
+    .composition-table td {
+        padding: 6px 8px;
+        font-size: 0.9rem;
+    }
+}
+
 .product-detail-description h3 {
     font-size: 1.5rem;
     font-weight: 600;
