@@ -698,8 +698,7 @@ header.scrolled {
 
 @media (max-width: 480px) {
     .product-composition {
-        padding: 12px;
-        margin-bottom: 20px;
+        padding: 8px;
     }
     
     .composition-table th,
