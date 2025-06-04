@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="theme-color" content="#007bff">
+    <title>Mivinta Pro - Wellfino Pharmaceutical</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <!-- Favicon -->
+    <link rel="icon" href="../assets/img/favicon.jpeg">
+    <link rel="shortcut icon" href="../assets/img/favicon.jpeg">
+    <link rel="apple-touch-icon" href="../assets/img/favicon.jpeg">
+    <!-- Fonts and Styles -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/product-detail.css">
+    <style>
+        /* Flavor selection styles */
+        .flavor-selection {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .flavor-option {
+            padding: 10px 18px;
+            border-radius: 30px;
+            border: 2px solid #e1e1e1;
+            background-color: white;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .flavor-option.active {
+            border-color: #007bff;
+            background-color: rgba(0, 123, 255, 0.05);
+            color: #007bff;
+        }
+        
+        .flavor-option:hover:not(.active) {
+            border-color: #007bff;
+            transform: translateY(-2px);
+        }
+        
+        .flavor-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .flavor-color.chocolate {
+            background-color: #6b4226;
+        }
+        
+        .flavor-color.elaichi {
+            background-color: #f4c430; /* Saffron/Kesar color */
+        }
+        
+        /* Product images container - simplified */
+        .product-images {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .product-image-container {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+        
+        .product-image-container.active {
+            display: block;
+        }
+        
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        @media (max-width: 768px) {
+            .flavor-option {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body class="product-page-styles">
+    <header>
+        <div class="product-page-navbar">
+            <a href="../index.html" class="product-page-logo">
+                <img src="../assets/img/Wellfino Logo.png" alt="Wellfino Pharmaceutical Logo">
+            </a>
+            <a href="../products.html" class="product-page-back">
+                <i class="ri-arrow-left-line"></i> Back to Products
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="product-detail-container">
+            <div class="product-detail">
+                <div class="product-detail-top">
+                    <div class="product-detail-essentials">
+                        <div class="product-detail-image">
+                            <div class="product-images">
+                                <div class="product-image-container elaichi">
+                                    <img src="../assets/img/products/mivinta-pro/mivinta-pro-kesar.png" alt="Mivinta Pro Kesar Elaichi">
+                                </div>
+                                <div class="product-image-container chocolate active">
+                                    <img src="../assets/img/products/mivinta-pro/mivinta-pro-choc.jpg" alt="Mivinta Pro Chocolate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-detail-content">
+                            <span class="product-detail-tag">General</span>
+                            <div class="product-title-container">
+                                <h1 class="product-detail-title">Mivinta Pro</h1>
+                                <button class="mobile-share-button">
+                                    <i class="ri-share-line"></i>
+                                </button>
+                                <div class="mobile-share-dropdown">
+                                    <span class="share-text">Share this product:</span>
+                                    <div class="share-icons">
+                                        <a href="https://www.facebook.com/sharer/sharer.php?u=PLACEHOLDER_URL" target="_blank" class="share-icon facebook" title="Facebook">
+                                            <i class="ri-facebook-fill"></i>
+                                        </a>
+                                        <a href="https://twitter.com/intent/tweet?text=PLACEHOLDER_TEXT" target="_blank" class="share-icon x" title="X (Twitter)">
+                                            <i class="ri-twitter-x-fill"></i>
+                                        </a>
+                                        <a href="https://wa.me/?text=Check out mivinta-pro from Wellfino Pharmaceutical: PLACEHOLDER_URL" target="_blank" class="share-icon whatsapp" title="WhatsApp">
+                                            <i class="ri-whatsapp-fill"></i>
+                                        </a>
+                                        <button class="share-icon copy" title="Copy">
+                                            <i class="ri-link"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-detail-price">₹399.00</div>
+                            
+                            <h4 style="margin-bottom: 8px;">Flavours</h4>
+                            <div class="flavor-selection">
+                                <button class="flavor-option chocolate active" data-flavor="chocolate">
+                                    <span class="flavor-color chocolate"></span>
+                                    Chocolate
+                                </button>
+                                <button class="flavor-option elaichi" data-flavor="elaichi">
+                                    <span class="flavor-color elaichi"></span>
+                                    Kesar Elaichi
+                                </button>
+                            </div>
+                            
+                            <div class="product-detail-share">
+                                <span class="share-text">Share this product:</span>
+                                <div class="share-icons">
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=PLACEHOLDER_URL" target="_blank" class="share-icon facebook" title="Facebook">
+                                        <i class="ri-facebook-fill"></i>
+                                    </a>
+                                    <a href="https://twitter.com/intent/tweet?text=PLACEHOLDER_TEXT" target="_blank" class="share-icon x" title="X (Twitter)">
+                                        <i class="ri-twitter-x-fill"></i>
+                                    </a>
+                                    <a href="https://wa.me/?text=Check out mivinta-pro from Wellfino Pharmaceutical: PLACEHOLDER_URL" target="_blank" class="share-icon whatsapp" title="WhatsApp">
+                                        <i class="ri-whatsapp-fill"></i>
+                                    </a>
+                                    <button class="share-icon copy" title="Copy">
+                                        <i class="ri-link"></i>
+                                    </button>
+                                </div>
+                                <div class="product-detail-meta">
+                                    <div class="product-detail-meta-item">
+                                        <span class="product-detail-meta-label">Pack Size</span>
+                                        <span class="product-detail-meta-value">200g</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-detail-info">
+                        <div class="product-detail-description">
+                            <h3>Product Description</h3>
+                            <div style="text-align: center; margin-bottom: 20px;">
+                                <img src="../assets/img/products/mivinta-pro/mivinta-pro va.jpeg" alt="Mivinta Pro VA" style="max-width: 100%; height: auto;">
+                            </div>
+                            <p>MIVINTA PRO contains whey protein, DHA, multivitamins, and multiminerals. It boosts immunity, strengthens the nervous system, and supports bone health.</p>
+                            <p>Ideal for pregnancy, lactation, children, and post-illness recovery. Available in two delicious flavors:</p>
+                            
+                            <ul>
+                                <li><strong>Kesar Elaichi:</strong> A unique traditional Indian flavor with saffron, perfect for those who prefer aromatic taste profiles.</li>
+                                <li><strong>Chocolate:</strong> A classic flavor that makes it an enjoyable addition to daily routines, whether consumed as a meal replacement or nutritional supplement.</li>
+                            </ul>
+                            
+                            <p>Each serving provides essential nutrients to support overall health and wellness, making it an excellent choice for those with increased nutritional needs.</p>
+                        </div>
+                        
+                        <div class="product-composition">
+                            <h3>Composition</h3>
+                            <table class="composition-table">
+                                <thead>
+                                    <tr>
+                                        <th>Ingredient</th>
+                                        <th>Strength</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="ingredient">Protein</td>
+                                        <td class="dosage">19 g</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ingredient">DHA</td>
+                                        <td class="dosage">100 mg</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="ingredient">Vitamins & Minerals</td>
+                                        <td class="dosage">Multiple</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../assets/js/script.js"></script>
+    <script src="../assets/js/products.js"></script>
+    <script>
+        // Update share URLs with actual page URL
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUrl = window.location.href.replace('/products/product-pages/', '/product-pages/');
+            const productName = document.querySelector('.product-detail-title').textContent;
+            const shareText = `Check out ${productName} from Wellfino Pharmaceutical`;
+            
+            // Update Facebook share link
+            const fbShareLink = document.querySelector('.share-icon.facebook');
+            if (fbShareLink) {
+                fbShareLink.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+            }
+            
+            // Update X (Twitter) share link
+            const xShareLink = document.querySelector('.share-icon.x');
+            if (xShareLink) {
+                xShareLink.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(currentUrl)}`;
+            }
+            
+            // Update WhatsApp share link
+            const whatsappShareLink = document.querySelector('.share-icon.whatsapp');
+            if (whatsappShareLink) {
+                whatsappShareLink.href = `https://wa.me/?text=${encodeURIComponent(shareText + ': ' + currentUrl)}`;
+            }
+            
+            // Define the missing initProductDetailShare function
+            function initProductDetailShare() {
+                // Mobile share button functionality
+                const mobileShareBtn = document.querySelector('.mobile-share-button');
+                const mobileShareDropdown = document.querySelector('.mobile-share-dropdown');
+                
+                if (mobileShareBtn && mobileShareDropdown) {
+                    mobileShareBtn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        mobileShareDropdown.classList.toggle('active');
+                    });
+                    
+                    // Close dropdown when clicking outside
+                    document.addEventListener('click', function(e) {
+                        if (!mobileShareBtn.contains(e.target) && !mobileShareDropdown.contains(e.target)) {
+                            mobileShareDropdown.classList.remove('active');
+                        }
+                    });
+                }
+                
+                // Copy link functionality
+                const copyBtn = document.querySelector('.share-icon.copy');
+                if (copyBtn) {
+                    copyBtn.addEventListener('click', function() {
+                        navigator.clipboard.writeText(currentUrl).then(() => {
+                            this.classList.add('copied');
+                            const icon = this.querySelector('i');
+                            icon.className = 'ri-check-line';
+                            
+                            setTimeout(() => {
+                                this.classList.remove('copied');
+                                icon.className = 'ri-link';
+                            }, 2000);
+                        });
+                    });
+                }
+            }
+            
+            // Initialize product detail share functionality
+            initProductDetailShare();
+            
+            // Add touch feedback for mobile devices
+            const shareIcons = document.querySelectorAll('.share-icon:not(.copy)');
+            shareIcons.forEach(icon => {
+                icon.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.95)';
+                });
+                
+                icon.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                });
+            });
+        });
+    </script>
+    
+    <!-- Standalone flavor selection script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get flavor buttons
+            const chocolateBtn = document.querySelector('.flavor-option.chocolate');
+            const elaichiBtn = document.querySelector('.flavor-option.elaichi');
+            
+            // Get image containers
+            const chocolateImg = document.querySelector('.product-image-container.chocolate');
+            const elaichiImg = document.querySelector('.product-image-container.elaichi');
+            
+            console.log('Flavor selection setup:');
+            console.log('- Chocolate button:', chocolateBtn);
+            console.log('- Elaichi button:', elaichiBtn);
+            console.log('- Chocolate image:', chocolateImg);
+            console.log('- Elaichi image:', elaichiImg);
+            
+            // Add click event for chocolate button
+            if (chocolateBtn) {
+                chocolateBtn.onclick = function() {
+                    console.log('Chocolate clicked');
+                    // Update button states
+                    chocolateBtn.classList.add('active');
+                    elaichiBtn.classList.remove('active');
+                    
+                    // Update image visibility
+                    chocolateImg.classList.add('active');
+                    elaichiImg.classList.remove('active');
+                };
+            }
+            
+            // Add click event for elaichi button
+            if (elaichiBtn) {
+                elaichiBtn.onclick = function() {
+                    console.log('Elaichi clicked');
+                    // Update button states
+                    elaichiBtn.classList.add('active');
+                    chocolateBtn.classList.remove('active');
+                    
+                    // Update image visibility
+                    elaichiImg.classList.add('active');
+                    chocolateImg.classList.remove('active');
+                };
+            }
+        });
+    </script>
+</body>
+</html> 

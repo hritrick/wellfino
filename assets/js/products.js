@@ -149,22 +149,18 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 16,
-            name: "Mivinta Pro (Elaichi)",
+            name: "Mivinta Pro",
             description: "Protein with DHA, multivitamins, and minerals for immunity.",
             type: "General",
             price: "₹399.00",
-            slug: "mivinta-pro-elaichi"
+            slug: "mivinta-pro",
+            flavors: [
+                { name: "Kesar Elaichi", slug: "mivinta-pro-elaichi" },
+                { name: "Chocolate", slug: "mivinta-pro-choc" }
+            ]
         },
         {
             id: 17,
-            name: "Mivinta Pro (Chocolate)",
-            description: "Protein with DHA, multivitamins, and minerals for immunity.",
-            type: "General",
-            price: "₹399.00",
-            slug: "mivinta-pro-choc"
-        },
-        {
-            id: 18,
             name: "Lusazic",
             description: "Anti-dandruff shampoo with antifungal properties.",
             type: "Dermatology",
@@ -172,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function() {
             slug: "lusazic"
         },
         {
-            id: 19,
+            id: 18,
             name: "Lubexin",
             description: "Anti-fungal cream that targets and eliminates fungal infections, soothing irritated skin.",
             type: "Dermatology",
@@ -180,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
             slug: "lubexin"
         },
         {
-            id: 20,
+            id: 19,
             name: "Laxomyn",
             description: "Gentle laxative for constipation relief.",
             type: "General",
@@ -188,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
             slug: "laxomyn"
         },
         {
-            id: 21,
+            id: 20,
             name: "K2-Nivcal",
             description: "Vitamin K2 with calcium for bone health.",
             type: "Orthopedic",
@@ -196,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
             slug: "k2-nivcal"
         },
         {
-            id: 22,
+            id: 21,
             name: "Jigfol",
             description: "Folic acid supplement for pregnancy health.",
             type: "Gynaecology",
@@ -204,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
             slug: "jigfol"
         },
         {
-            id: 23,
+            id: 22,
             name: "Hidranergy",
             description: "Oral Rehydration salts with electrolytes, vitamin C and lactobacillus.",
             type: "General",
@@ -212,7 +208,7 @@ document.addEventListener('DOMContentLoaded', function() {
             slug: "hidranergy"
         },
         {
-            id: 24,
+            id: 23,
             name: "Enzonix",
             description: "Proteolytic enzyme formula for inflammation and tissue repair.",
             type: "Orthopedic",
@@ -220,7 +216,7 @@ document.addEventListener('DOMContentLoaded', function() {
             slug: "enzonix"
         },
         {
-            id: 25,
+            id: 24,
             name: "Emvaas",
             description: "Gentle, pH-balanced feminine wash.",
             type: "Gynaecology",
@@ -228,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
             slug: "emvaas"
         },
         {
-            id: 26,
+            id: 25,
             name: "Dozinix",
             description: "Relieves nausea and vomiting during pregnancy.",
             type: "Gynaecology",
@@ -236,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
             slug: "dozinix"
         },
         {
-            id: 27,
+            id: 26,
             name: "Blissglow-H",
             description: "Nourishes skin and hair from within for a radiant, healthy glow.",
             type: "Dermatology",
@@ -244,43 +240,43 @@ document.addEventListener('DOMContentLoaded', function() {
             slug: "blissglow-h"
         },
         {
-            id: 28,
+            id: 27,
             name: "Allemont-LC",
             description: "Anti-allergic combination for allergic rhinitis and cough.",
             type: "General",
-            price: "₹130.00",
+            price: "₹99.00",
             slug: "allemont-lc"
+        },
+        {
+            id: 28,
+            name: "Acepimol-SP",
+            description: "Combination analgesic for pain relief.",
+            type: "General",
+            price: "₹99.00",
+            slug: "acepimol-sp"
         },
         {
             id: 29,
             name: "Acepimol-Cold",
-            description: "Relief from cold, cough, and flu symptoms.",
+            description: "Cold and flu relief formula.",
             type: "General",
             price: "₹99.00",
             slug: "acepimol-cold"
         },
         {
             id: 30,
-            name: "Acepimol-SP",
-            description: "Strong pain reliever with extended release formula.",
-            type: "General",
-            price: "₹125.00",
-            slug: "acepimol-sp"
-        },
-        {
-            id: 31,
             name: "Xitcid",
-            description: "Treatment for excessive stomach acid production.",
+            description: "Acid reflux and heartburn relief.",
             type: "PPI",
-            price: "₹80.00",
+            price: "₹125.00",
             slug: "xitcid"
         },
         {
-            id: 32,
+            id: 31,
             name: "Xitmox-LB625",
-            description: "Advanced probiotic blend with lactobacillus.",
+            description: "Antibiotic for bacterial infections.",
             type: "Antibiotics",
-            price: "₹165.00",
+            price: "₹265.00",
             slug: "xitmox-lb625"
         }
     ];
@@ -294,10 +290,13 @@ document.addEventListener('DOMContentLoaded', function() {
             productCard.className = 'product-card';
             productCard.style.setProperty('--animation-order', (index % 8) + 1);
             
-            productCard.innerHTML = `
+            // Get the correct folder name based on the slug
+            const folderName = getFolderName(product.slug);
+            
+            let productContent = `
                 <div class="product-image">
                     <a href="product-pages/${product.slug}.html">
-                        <img src="assets/img/products/${getProductImage(product.slug)}" alt="${product.name}">
+                        <img src="assets/img/products/${folderName}/${getProductImage(product.slug)}" alt="${product.name}">
                     </a>
                     <span class="product-tag">${product.type}</span>
                     <button class="share-button" aria-label="Share product">
@@ -334,6 +333,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
             `;
             
+            productCard.innerHTML = productContent;
             productsGrid.appendChild(productCard);
         });
         
@@ -381,8 +381,8 @@ document.addEventListener('DOMContentLoaded', function() {
             'lubexin': 'lubexin.png',
             'lusazic': 'lusazic.jpg',
             'mivinta': 'mivinta.png',
-            'mivinta-pro-choc': 'mivinta-pro-choc.png',
-            'mivinta-pro-elaichi': 'mivinta-pro.jpg',
+            'mivinta-pro': 'mivinta-pro-choc.jpg',
+            'mivinta-pro-elaichi': 'mivinta-pro-kesar.png',
             'morrcef-cv': 'morrcef-cv.png',
             'nilobact': 'nilobact.png',
             'niqcee-z': 'niqcee-z.png',
@@ -420,7 +420,8 @@ document.addEventListener('DOMContentLoaded', function() {
             'laxomyn': 'Capsules',
             'lubexin': 'Cream',
             'lusazic': 'Shampoo',
-            'mivinta': 'Supplement',
+            'mivinta': 'Tablets',
+            'mivinta-pro': 'Supplement',
             'mivinta-pro-choc': 'Supplement',
             'mivinta-pro-elaichi': 'Supplement',
             'morrcef-cv': 'Tablets',
@@ -442,6 +443,19 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         return formMap[slug] || 'Tablets';
+    }
+    
+    // Function to get the correct folder name based on slug
+    function getFolderName(slug) {
+        const folderMap = {
+            'blissglow-h': 'blissglow',
+            'nilobact': 'nilobact-200 lb',
+            'niv-d3': 'NIV D3',
+            'xitmox-lb625': 'xitmox-lb 625',
+            'u4glow-facewash': 'u4glow'
+        };
+        
+        return folderMap[slug] || slug;
     }
     
     // Load products on page load
