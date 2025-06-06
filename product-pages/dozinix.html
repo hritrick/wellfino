@@ -134,6 +134,23 @@
     <script src="../assets/js/products.js"></script>
     <script>
         // Update share URLs with actual page URL
+        document.addEventListener('DOMContentLoaded', function () {
+    const shareButton = document.querySelector('.mobile-share-button');
+    const shareDropdown = document.querySelector('.mobile-share-dropdown');
+
+    if (shareButton && shareDropdown) {
+        shareButton.addEventListener('click', function (e) {
+            e.stopPropagation();
+            shareDropdown.classList.toggle('active'); // Toggle visibility
+        });
+
+        // Optional: hide dropdown when clicking outside
+        document.addEventListener('click', function () {
+            shareDropdown.classList.remove('active');
+        });
+    }
+});
+
         document.addEventListener('DOMContentLoaded', function() {
             const currentUrl = window.location.href.replace('/products/product-pages/', '/product-pages/');
             const productName = document.querySelector('.product-detail-title').textContent;
