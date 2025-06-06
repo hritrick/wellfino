@@ -557,14 +557,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 const card = this.closest('.product-card');
                 const productLink = card.querySelector('.product-info a').getAttribute('href');
                 const productName = card.querySelector('.product-name').textContent;
-                const productUrl = window.location.origin + window.location.pathname.replace('products.html', '') + productLink;
-                
-                shareProduct(type, productName, productUrl);
-                
+                const productUrl = new URL(productLink, window.location.href).href;
+        
+                shareProduct(type, productName, productUrl, this);
+        
                 // Close tooltip after sharing
                 this.closest('.share-tooltip').classList.remove('active');
             });
-        });
+        });        
     }
     
     // Initialize share buttons
@@ -573,11 +573,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Share product function
-    function shareProduct(type, title, url) {
+    function shareProduct(type, title, url, currentOption) {
         const text = `Check out ${title} from Wellfino Pharmaceutical`;
         
         // Fix URL path if needed
-        const fixedUrl = url.replace('/products/product-pages/', '/product-pages/');
+        const fixedUrl = url
         
         switch(type) {
             case 'facebook':
@@ -592,15 +592,17 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'copy':
                 navigator.clipboard.writeText(fixedUrl).then(() => {
                     // Show copy success feedback
-                    const copyOption = document.querySelector(`.share-option[data-type="copy"]`);
-                    const originalText = copyOption.querySelector('span').textContent;
-                    copyOption.querySelector('span').textContent = 'Copied!';
-                    copyOption.querySelector('i').className = 'ri-check-line';
-                    
-                    setTimeout(() => {
-                        copyOption.querySelector('span').textContent = originalText;
-                        copyOption.querySelector('i').className = 'ri-link';
-                    }, 2000);
+                    const span = currentOption.querySelector('span');
+const icon = currentOption.querySelector('i');
+const originalText = span.textContent;
+span.textContent = 'Copied!';
+icon.className = 'ri-check-line';
+
+setTimeout(() => {
+    span.textContent = originalText;
+    icon.className = 'ri-link';
+}, 2000);
+
                 });
                 break;
         }
