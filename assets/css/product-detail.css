@@ -627,7 +627,6 @@ header.scrolled {
 
 /* Product description section */
 .product-detail-description {
-    margin-bottom: 30px;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
@@ -1011,7 +1010,7 @@ header.scrolled {
     }
     
     .product-detail-content {
-        padding: 20px 15px;
+        padding: 0px 15px;
     }
     
     .product-detail-info {
