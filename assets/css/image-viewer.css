@@ -1,0 +1,126 @@
+/* Mobile Image Viewer Styles */
+.image-viewer-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.image-viewer-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.image-viewer-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-viewer-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.viewer-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    transform-origin: center;
+    transition: transform 0.1s ease-out;
+    touch-action: none; /* Prevent browser handling of touch gestures */
+}
+
+.close-viewer {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.close-viewer i {
+    font-size: 24px;
+}
+
+/* Add a hint for users to know they can zoom */
+.product-detail-image {
+    position: relative;
+}
+
+.product-detail-image::after {
+    content: "Tap to view";
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+@media (min-width: 769px) {
+    .product-detail-image::after {
+        display: none;
+    }
+}
+
+/* Add this at the end of the file */
+.zoomable-image {
+    cursor: zoom-in;
+    transition: transform 0.2s ease;
+    position: relative;
+}
+
+.zoomable-image:hover {
+    transform: scale(1.02);
+}
+
+.zoomable-image::after {
+    content: "Tap to view";
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+@media (min-width: 769px) {
+    .zoomable-image:hover::after {
+        display: block;
+    }
+    .zoomable-image::after {
+        display: none;
+    }
+}
