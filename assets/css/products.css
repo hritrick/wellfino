@@ -559,6 +559,10 @@ body {
     .share-button i {
         font-size: 1rem;
     }
+
+    .share-option {
+        padding: 3px 15px;
+    }
     
     .products-page-title {
         font-size: 2rem;
